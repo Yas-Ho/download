@@ -166,46 +166,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .slogan svg { position: absolute; width: 46px; height: 40px; left: 100%; top: 14px; margin-left: 2px; }
 
 .phone {
-  position: relative; width: 300px; height: 560px; margin-bottom: -44px;
+  position: relative; width: 300px; height: 614px; margin-bottom: -12px;
   border-radius: 48px; background: var(--ink); padding: 11px;
   box-shadow: 0 40px 80px -30px rgba(60,40,0,.55);
 }
-.screen { position: relative; height: 100%; border-radius: 38px; background: var(--paper); overflow: hidden; font-size: 13px; }
+.screen { position: relative; height: 100%; border-radius: 38px; background: var(--mist); overflow: hidden; }
+.screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .island { position: absolute; top: 10px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: var(--ink); z-index: 3; }
-.app-top { display: flex; align-items: center; gap: 10px; padding: 50px 16px 10px; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; }
-.app-top .back { width: 30px; height: 30px; border-radius: 50%; background: var(--mist); display: grid; place-items: center; }
-.app-top .back svg { width: 14px; height: 14px; }
-.map { position: relative; height: 92px; margin: 0 14px; border-radius: 16px; background: var(--mist); overflow: hidden; }
-.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.price {
-  margin: 12px 14px 0; padding: 12px 14px; border-radius: 16px; border: 2px solid var(--ink);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.price-label { font-size: 11.5px; color: var(--gray); font-weight: 600; }
-.price-value { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
-.price-edit { font-size: 11.5px; font-weight: 700; padding: 6px 10px; border-radius: 9px; background: var(--mist); }
-.offers-head { display: flex; align-items: center; justify-content: space-between; margin: 16px 16px 8px; font-weight: 800; font-size: 13.5px; }
-.live { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--gray); }
-.live i { width: 7px; height: 7px; border-radius: 50%; background: #22a35a; }
-.offer {
-  display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px;
-  margin: 0 14px 8px; padding: 10px 12px; border-radius: 14px; background: var(--mist);
-}
-.offer.is-best { background: var(--paper); box-shadow: inset 0 0 0 2px var(--yellow); }
-.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-weight: 800; font-size: 12px; }
-.avatar.is-agency { background: var(--yellow); color: var(--ink); }
-.offer-name { font-weight: 700; font-size: 13px; line-height: 1.2; display: flex; align-items: center; gap: 4px; }
-.offer-name svg { width: 13px; height: 13px; }
-.offer-meta { font-size: 11.5px; color: var(--gray); display: flex; gap: 8px; margin-top: 2px; }
-.offer-price { text-align: right; font-weight: 800; font-size: 15px; letter-spacing: -0.02em; }
-.accept { display: block; margin-top: 4px; font-size: 10.5px; font-weight: 800; padding: 4px 8px; border-radius: 7px; background: var(--yellow); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .offer { animation: offer-in .5s cubic-bezier(.2,.8,.2,1) both; }
-  .offer:nth-of-type(1) { animation-delay: .7s; }
-  .offer:nth-of-type(2) { animation-delay: 1.5s; }
-  .offer:nth-of-type(3) { animation-delay: 2.3s; }
-  @keyframes offer-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+  .phone { animation: phone-in .9s cubic-bezier(.2,.8,.2,1) .15s both; }
+  @keyframes phone-in { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
 }
 
 /* ---------- Sections ---------- */
@@ -351,7 +322,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hero-sub { font-size: 1.1875rem; margin-top: 22px; }
   .stores { margin-top: 32px; }
   .stage { align-self: end; padding-top: 0; }
-  .phone { width: 320px; height: 620px; margin-bottom: -70px; }
+  .phone { width: 320px; height: 657px; margin-bottom: -12px; }
   .slogan { top: 150px; left: auto; right: calc(50% + 200px); transform: rotate(-7deg); font-size: 2.25rem; }
   .slogan svg { left: auto; right: -48px; top: 26px; }
   .section { padding: 120px 0; }
@@ -435,40 +406,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
         <div class="phone">
           <div class="screen">
             <div class="island"></div>
-            <div class="app-top">
-              <span class="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
-              Plomberie
-            </div>
-            <div class="map">
-              <svg viewBox="0 0 270 92" preserveAspectRatio="xMidYMid slice">
-                <path d="M-10 64 C60 50 90 80 150 60 S240 30 290 42" stroke="#fff" stroke-width="9" fill="none"/>
-                <path d="M88 -10 L120 110 M200 -10 L180 110 M-10 22 L290 30" stroke="#fff" stroke-width="5" fill="none"/>
-                <path d="M60 58 C90 46 120 60 150 60" stroke="#0A0A0A" stroke-width="3" stroke-dasharray="5 5" fill="none"/>
-                <circle cx="60" cy="58" r="7" fill="#0A0A0A"/><circle cx="60" cy="58" r="2.5" fill="#fff"/>
-                <path d="M150 36c-7 0-12 5-12 11 0 9 12 19 12 19s12-10 12-19c0-6-5-11-12-11z" fill="#f1bc2e" stroke="#0A0A0A" stroke-width="2"/>
-                <circle cx="150" cy="47" r="4" fill="#0A0A0A"/>
-              </svg>
-            </div>
-            <div class="price">
-              <div><div class="price-label">Votre prix</div><div class="price-value">150 DH</div></div>
-              <span class="price-edit">Modifier</span>
-            </div>
-            <div class="offers-head">Offres reçues <span class="live"><i></i><span id="offer-count">3</span> en direct</span></div>
-            <div class="offer is-best">
-              <span class="avatar">YB</span>
-              <div><div class="offer-name">Youssef B.</div><div class="offer-meta"><span>★ 4,9</span><span>à 8 min</span></div></div>
-              <div class="offer-price">150 DH<span class="accept">Accepter</span></div>
-            </div>
-            <div class="offer">
-              <span class="avatar is-agency">RS</span>
-              <div><div class="offer-name">Riad Services <svg viewBox="0 0 24 24"><path fill="#0A0A0A" d="M12 1l3 2.4 3.8-.3.9 3.7 3.2 2.1-1.5 3.6 1.5 3.6-3.2 2.1-.9 3.7-3.8-.3L12 23l-3-2.4-3.8.3-.9-3.7L1.1 15.1 2.6 11.5 1.1 7.9l3.2-2.1.9-3.7 3.8.3z"/><path d="M8 12l3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="offer-meta"><span>★ 4,8</span><span>à 12 min</span></div></div>
-              <div class="offer-price">170 DH</div>
-            </div>
-            <div class="offer">
-              <span class="avatar">HE</span>
-              <div><div class="offer-name">Hamza E.</div><div class="offer-meta"><span>★ 4,7</span><span>à 15 min</span></div></div>
-              <div class="offer-price">160 DH</div>
-            </div>
+            <picture>
+              <source srcset="home-screen.webp" type="image/webp">
+              <img src="home-screen.jpg" width="600" height="1278" alt="" decoding="async" fetchpriority="high">
+            </picture>
           </div>
         </div>
       </div>
@@ -705,13 +646,6 @@ var SOCIAL_URLS = {
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Compteur d'offres synchronisé avec l'animation du mockup
-  var count = document.getElementById("offer-count");
-  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    count.textContent = "0";
-    [900, 1700, 2500].forEach(function (t, i) { setTimeout(function () { count.textContent = String(i + 1); }, t); });
-  }
 
   // Navbar : fond blanc une fois le hero dépassé ; barre de téléchargement mobile
   var nav = document.getElementById("nav");
