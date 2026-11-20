@@ -135,6 +135,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Logo ---------- */
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.035em; }
 .brand-mark { width: 22px; height: 28px; flex: none; }
+/* Logo de la barre de navigation : tuile jaune cerclée de noir (comme l'icône de l'app), lisible sur le hero jaune comme sur fond blanc */
+.brand-tile { width: 36px; height: 36px; flex: none; display: grid; place-items: center; background: var(--yellow); border: 2px solid var(--ink); border-radius: 10px; }
+.brand-tile .brand-mark { width: 18px; height: 23px; color: var(--ink); }
 
 /* ---------- Navbar ---------- */
 .nav {
@@ -420,7 +423,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top" aria-label="FixNow, retour en haut de page">
-      <svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg>FixNow
+      <span class="brand-tile"><svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg></span>FixNow
     </a>
     <nav class="nav-links" aria-label="Navigation principale">
       <a href="#services">Services</a>
