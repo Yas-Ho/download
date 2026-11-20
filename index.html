@@ -173,7 +173,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .screen { position: relative; height: 100%; border-radius: 38px; background: #E0E0E0; overflow: hidden; container-type: inline-size; }
 .screen picture, .screen img, .screen video { display: block; width: 100%; }
 .screen-map { position: absolute; inset: 0 0 auto 0; height: 63%; }
-.screen-map img, .screen-map video { height: 100%; object-fit: cover; object-position: center top; }
+video.screen-map { height: 63%; object-fit: cover; object-position: center top; background: #E0E0E0; }
 .screen-sheet { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 4.5cqw 4.5cqw 0 0; overflow: hidden; box-shadow: 0 -4px 14px rgba(0,0,0,.08); }
 .screen-sheet img { height: auto; }
 .screen-menu {
@@ -430,10 +430,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
           <div class="screen">
             <div class="island"></div>
             <!-- Carte 3D : Maârif, Casablanca (rendu Remotion / Mapbox, même style que les vidéos FixNow) -->
-            <picture class="screen-map">
-              <source srcset="hero-map.webp" type="image/webp">
-              <img src="hero-map.jpg" width="600" height="800" alt="" decoding="async" fetchpriority="high">
-            </picture>
+            <video class="screen-map" id="hero-map" muted loop playsinline preload="none" poster="hero-map.webp" data-src="hero-map.mp4" width="600" height="800"></video>
             <span class="screen-menu"><i></i><i></i><i></i></span>
             <span class="screen-addr">
               <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
@@ -681,6 +678,20 @@ var SOCIAL_URLS = {
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Carte 3D animée du hero : chargée après la page, jamais si l'utilisateur réduit les animations
+  // ou économise ses données (l'affiche hero-map.webp reste alors affichée).
+  var heroMap = document.getElementById("hero-map");
+  var calm = matchMedia("(prefers-reduced-motion: reduce)").matches ||
+             (navigator.connection && navigator.connection.saveData);
+  if (heroMap && !calm) {
+    var startMap = function () {
+      heroMap.src = heroMap.getAttribute("data-src");
+      var p = heroMap.play();
+      if (p && p.catch) p.catch(function () {}); // lecture auto refusée (mode économie d'énergie) : l'affiche reste
+    };
+    if (document.readyState === "complete") startMap(); else window.addEventListener("load", startMap);
+  }
 
   // Navbar : fond blanc une fois le hero dépassé ; barre de téléchargement mobile
   var nav = document.getElementById("nav");
