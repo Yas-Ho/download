@@ -464,10 +464,11 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   .hero h1 { font-size: clamp(3.6rem, 5.6vw, 5rem); }
   .hero-sub { font-size: 1.1875rem; margin-top: 22px; }
   .stores { margin-top: 32px; }
-  .stage { align-self: end; padding-top: 0; }
+  /* slogan au-dessus du téléphone, dans sa colonne : il ne passe plus sous le titre */
+  .stage { align-self: end; padding-top: 72px; }
   .phone { width: 320px; height: 657px; margin-bottom: 56px; }
-  .slogan { top: 150px; left: auto; right: calc(50% + 200px); transform: rotate(-7deg); font-size: 2.25rem; }
-  .slogan svg { left: auto; right: -48px; top: 26px; }
+  .slogan { transform: translateX(-178px) rotate(-6deg); font-size: 2.25rem; }
+  .slogan svg { top: 18px; }
   .section { padding: 120px 0; }
   .grid { grid-template-columns: repeat(6, 1fr); }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 40px; }
