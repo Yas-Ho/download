@@ -229,13 +229,75 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   position: relative; width: 300px; height: 614px; margin-bottom: -12px;
   border-radius: 48px; background: var(--ink); padding: 11px;
   box-shadow: 0 40px 80px -30px rgba(60,40,0,.55);
+  container-type: inline-size; /* cqw du carrousel .holo = largeur de l'écran */
 }
 .screen { position: relative; height: 100%; border-radius: 38px; background: #E0E0E0; overflow: hidden; container-type: inline-size; }
 .screen picture, .screen img, .screen video { display: block; width: 100%; }
 .screen-map { position: absolute; inset: 0 0 auto 0; height: 63%; }
 video.screen-map { height: 63%; object-fit: cover; object-position: center top; background: #E0E0E0; }
-.screen-sheet { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 4.5cqw 4.5cqw 0 0; overflow: hidden; box-shadow: 0 -4px 14px rgba(0,0,0,.08); }
-.screen-sheet img { height: auto; }
+/* Panneau « Réserver un service » (unités cqw = % de la largeur de l'écran, l'ensemble suit la taille du téléphone) */
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 87cqw;
+  background: #fff; border-radius: 4.5cqw 4.5cqw 0 0; box-shadow: 0 -4px 14px rgba(0,0,0,.08);
+}
+.sheet-grab { position: absolute; top: 2.4cqw; left: 50%; width: 11cqw; height: 1.2cqw; margin-left: -5.5cqw; border-radius: 1cqw; background: #CFCFCF; }
+.sheet-title { position: absolute; top: 6.4cqw; left: 0; right: 0; margin: 0; text-align: center; font: 700 4.6cqw/1 var(--font); letter-spacing: -0.02em; }
+.holo-pad {
+  position: absolute; top: 29cqw; left: 50%; width: 40cqw; height: 7cqw; margin-left: -20cqw; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(241,188,46,.6), rgba(241,188,46,.18) 60%, rgba(241,188,46,0));
+}
+.sheet-input { position: absolute; top: 38cqw; left: 4cqw; right: 4cqw; height: 24cqw; border-radius: 5cqw; background: var(--mist); }
+.sheet-hint { position: absolute; top: 4.2cqw; left: 4.5cqw; font: 500 3.7cqw/1 var(--font); color: #7A7A7A; white-space: nowrap; }
+.sheet-ico { position: absolute; bottom: 2.6cqw; width: 9.5cqw; height: 9.5cqw; border-radius: 50%; background: #E4E4E4; display: grid; place-items: center; }
+.sheet-ico svg { width: 4.8cqw; height: 4.8cqw; }
+.ico-cam { left: 2.6cqw; }
+.ico-mic { right: 14.2cqw; }
+.ico-img { right: 2.6cqw; }
+.sheet-cta {
+  position: absolute; top: 65.5cqw; left: 4cqw; right: 4cqw; height: 13.5cqw; border-radius: 4cqw; background: var(--yellow);
+  display: grid; place-items: center; font: 700 4.2cqw/1 var(--font); letter-spacing: -0.01em; white-space: nowrap;
+}
+#holo-cta { transition: opacity .18s ease, transform .18s ease; }
+#holo-cta.is-swapping { opacity: 0; transform: translateY(1.2cqw); }
+.sheet-home { position: absolute; bottom: 1.8cqw; left: 50%; width: 32cqw; height: 1.1cqw; margin-left: -16cqw; border-radius: 1cqw; background: var(--ink); }
+
+/* Cartes de service en hologramme : carrousel 3D au-dessus du panneau, non rogné par l'écran.
+   La carte du milieu est jaune et sort du plan ; les autres, en verre, pivotent et s'éloignent. */
+.holo { position: absolute; left: 11px; right: 11px; bottom: 11px; height: 87cqw; pointer-events: none; }
+.holo-track { position: absolute; left: 0; right: 0; top: 16.5cqw; height: 16cqw; perspective: 80cqw; perspective-origin: 50% 40%; transform-style: preserve-3d; }
+.holo-card {
+  --d: 0; --ad: 0; --lift: 0;
+  position: absolute; top: 0; left: 50%; width: 25cqw; height: 16cqw; margin-left: -12.5cqw;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.8cqw;
+  border-radius: 3.6cqw; border: 1px solid rgba(255,255,255,.95);
+  background: rgba(238,238,238,.72); -webkit-backdrop-filter: blur(6px) saturate(1.4); backdrop-filter: blur(6px) saturate(1.4);
+  box-shadow: 0 2cqw 3.5cqw -2cqw rgba(0,0,0,.3), inset 0 0 0 .35cqw rgba(255,255,255,.3);
+  color: var(--ink); font: 700 2.8cqw/1 var(--font); letter-spacing: -0.01em;
+  transform: translateX(calc(var(--d) * 30cqw)) translateY(calc(var(--lift) * -2.6cqw))
+             translateZ(calc(var(--ad) * -7cqw + var(--lift) * 10cqw)) rotateY(calc(var(--d) * -24deg));
+  opacity: calc(1 - var(--ad) * .16);
+  pointer-events: auto; cursor: pointer;
+  transition: transform .75s cubic-bezier(.22,.9,.24,1), opacity .5s ease, background-color .45s ease, box-shadow .55s ease;
+}
+/* reflet et trame d'hologramme */
+.holo-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    linear-gradient(140deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,0) 42%, rgba(255,255,255,0) 70%, rgba(255,255,255,.45) 100%),
+    repeating-linear-gradient(0deg, rgba(10,10,10,.05) 0 1px, transparent 1px 3px);
+}
+.holo-card svg { position: relative; width: 6cqw; height: 6cqw; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.holo-card span { position: relative; max-width: 22cqw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.holo-card.is-active {
+  --lift: 1;
+  background: var(--yellow); border-color: rgba(255,255,255,.75);
+  box-shadow: 0 4cqw 6cqw -2.5cqw rgba(110,70,0,.6), 0 0 0 .5cqw rgba(241,188,46,.28),
+              inset 0 .6cqw .7cqw rgba(255,255,255,.55), inset 0 -.7cqw .9cqw rgba(150,92,0,.3);
+}
+.holo-card.is-far { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .holo-card, #holo-cta { transition: none; }
+}
 .screen-menu {
   position: absolute; top: 4.5%; left: 4.5cqw; width: 11cqw; height: 11cqw; border-radius: 50%;
   background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.18);
@@ -497,12 +559,23 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
               Anfa, Casablanca<b>GPS</b>
             </span>
             <span class="screen-locate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="6.5"/><circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></span>
-            <!-- Panneau « Réserver un service » : capture réelle de l'app -->
-            <picture class="screen-sheet">
-              <source srcset="home-sheet.webp" type="image/webp">
-              <img src="home-sheet.jpg" width="600" height="523" alt="" decoding="async">
-            </picture>
+            <!-- Panneau « Réserver un service », recréé d'après l'app (les cartes de service sont dans .holo, hors de l'écran) -->
+            <div class="sheet">
+              <span class="sheet-grab"></span>
+              <p class="sheet-title">Réserver un service</p>
+              <span class="holo-pad"></span>
+              <div class="sheet-input">
+                <span class="sheet-hint">Décrivez ce dont vous avez besoin...</span>
+                <i class="sheet-ico ico-cam"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 3 7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-3.2L15 3H9zm3 14a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg></i>
+                <i class="sheet-ico ico-mic"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5.3-3a5.3 5.3 0 0 1-10.6 0H5a7 7 0 0 0 6 6.9V21h2v-3.1a7 7 0 0 0 6-6.9h-1.7z"/></svg></i>
+                <i class="sheet-ico ico-img"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M19 3v3h3v2h-3v3h-2V8h-3V6h3V3h2zM4 6h8v2H5v11h11v-6h2v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zm2 11 2.5-3.3 1.8 2.3 2.5-3.3L16 17H6z"/></svg></i>
+              </div>
+              <span class="sheet-cta"><span id="holo-cta">Rechercher un plombier</span></span>
+              <span class="sheet-home"></span>
+            </div>
           </div>
+          <!-- Cartes de service en hologramme : posées au-dessus du panneau, elles débordent de l'écran (remplies en JS) -->
+          <div class="holo" id="holo"></div>
         </div>
       </div>
     </div>
@@ -735,6 +808,67 @@ var SOCIAL_URLS = {
       if (p && p.catch) p.catch(function () {}); // lecture auto refusée (mode économie d'énergie) : l'affiche reste
     };
     if (document.readyState === "complete") startMap(); else window.addEventListener("load", startMap);
+  }
+
+  // Carrousel hologramme des services dans le mockup : défile seul, la carte du milieu est sélectionnée (jaune)
+  // et le bouton suit le service. Icônes reprises de la grille des services. Arrêté hors écran et onglet masqué.
+  var holo = document.getElementById("holo");
+  var holoCta = document.getElementById("holo-cta");
+  if (holo && holoCta) {
+    var SERVICES = [
+      ["Plomberie", "un plombier"], ["Ménage", "une aide ménagère"], ["Lavage auto", "un pro du lavage"],
+      ["Serrurier", "un serrurier"], ["Électricité", "un électricien"], ["Peinture", "un peintre"],
+      ["Électroménager", "un réparateur"], ["Menuiserie", "un menuisier"], ["Jardinage", "un jardinier"],
+      ["Déménagement", "un déménageur"], ["Mécanique", "un mécanicien"], ["Coiffure", "un coiffeur"]
+    ];
+    var icons = {};
+    document.querySelectorAll(".grid .tile").forEach(function (t) { icons[t.textContent.trim()] = t.querySelector("svg"); });
+    var track = document.createElement("div");
+    track.className = "holo-track";
+    holo.appendChild(track);
+    var n = SERVICES.length, active = 0, timer = null, swapTimer = null, inView = true;
+    var cards = SERVICES.map(function (s, i) {
+      var c = document.createElement("div");
+      c.className = "holo-card";
+      if (icons[s[0]]) c.appendChild(icons[s[0]].cloneNode(true));
+      var label = document.createElement("span");
+      label.textContent = s[0];
+      c.appendChild(label);
+      c.addEventListener("click", function () { select(i); restart(); });
+      track.appendChild(c);
+      return c;
+    });
+    var layout = function () {
+      cards.forEach(function (c, i) {
+        var d = ((i - active) % n + n) % n;
+        if (d > n / 2) d -= n;
+        var ad = Math.abs(d);
+        c.style.setProperty("--d", d);
+        c.style.setProperty("--ad", ad);
+        c.style.zIndex = 10 - ad;
+        c.classList.toggle("is-active", d === 0);
+        c.classList.toggle("is-far", ad > 2);
+      });
+    };
+    var select = function (i) {
+      active = (i + n) % n;
+      layout();
+      var text = "Rechercher " + SERVICES[active][1];
+      holoCta.classList.add("is-swapping");
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () { holoCta.textContent = text; holoCta.classList.remove("is-swapping"); }, 180);
+    };
+    var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var restart = function () {
+      clearInterval(timer);
+      if (!still && inView && !document.hidden) timer = setInterval(function () { select(active + 1); }, 2400);
+    };
+    layout();
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { inView = e[0].isIntersecting; restart(); }).observe(holo);
+    }
+    document.addEventListener("visibilitychange", restart);
+    restart();
   }
 
   // Navbar : fond blanc une fois le hero dépassé ; barre de téléchargement mobile
