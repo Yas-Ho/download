@@ -3,6 +3,41 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+/* =========================================================
+   CONFIGURATION : liens officiels des stores (à modifier ici si besoin)
+   ========================================================= */
+var APP_STORE_URL  = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
+var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
+
+var FIXNOW_OS = (function (ua) {
+  if (/android/i.test(ua)) return "android";
+  if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) return "ios";
+  return "other";
+})(navigator.userAgent || "");
+
+// Transmet les paramètres UTM des pubs Meta/TikTok à Google Play (attribution des installations)
+function fixnowPlayUrl() {
+  var p = new URLSearchParams(location.search), ref = [];
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+    if (p.get(k)) ref.push(k + "=" + p.get(k));
+  });
+  return ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
+}
+
+// Arrivée depuis fixnowapp.com/download (?store=1) sur téléphone : le store s'ouvre tout de suite, avant même
+// le chargement des polices et du reste de la page, qui continue de se charger derrière lui.
+// Le paramètre est retiré de l'adresse pour qu'un retour ou un rechargement ne relance pas le store.
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (!q.has("store")) return;
+  q.delete("store");
+  var rest = q.toString();
+  history.replaceState(null, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
+  if (FIXNOW_OS === "ios") location.href = APP_STORE_URL;
+  else if (FIXNOW_OS === "android") location.href = fixnowPlayUrl();
+})();
+</script>
 <title>FixNow : un pro chez vous, au prix que vous proposez</title>
 <meta name="description" content="Plombier, électricien, ménage, serrurier, déménagement… Proposez votre prix et choisissez parmi les offres de prestataires vérifiés près de chez vous. Disponible au Maroc sur iOS et Android.">
 <meta name="theme-color" content="#f1bc2e">
@@ -636,11 +671,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 </div>
 
 <script>
-/* =========================================================
-   CONFIGURATION : remplacez les liens ici
-   ========================================================= */
-var APP_STORE_URL  = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
-var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
+/* Réseaux sociaux (les liens des stores sont configurés en haut de la page, dans <head>) */
 var SOCIAL_URLS = {
   instagram: "https://www.instagram.com/fixnow.app/",
   linkedin:  "https://www.linkedin.com/company/112291596/",   // laisser vide = lien masqué
@@ -648,19 +679,8 @@ var SOCIAL_URLS = {
 };
 
 (function () {
-  var ua = navigator.userAgent || "";
-  var os = /android/i.test(ua) ? "android"
-         : (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) ? "ios"
-         : "other";
-
-  // Transmet les paramètres UTM des pubs Meta/TikTok à Google Play (attribution des installations)
-  function playUrl() {
-    var p = new URLSearchParams(location.search), ref = [];
-    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
-      if (p.get(k)) ref.push(k + "=" + p.get(k));
-    });
-    return ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
-  }
+  var os = FIXNOW_OS;
+  var playUrl = fixnowPlayUrl;
 
   document.querySelectorAll('[data-store="ios"]').forEach(function (a) { a.href = APP_STORE_URL; });
   document.querySelectorAll('[data-store="android"]').forEach(function (a) { a.href = playUrl(); });
@@ -670,19 +690,6 @@ var SOCIAL_URLS = {
     else a.href = "#telecharger";
   });
   if (os === "android") document.querySelectorAll(".stores").forEach(function (s) { s.classList.add("android-first"); });
-
-  // Arrivée depuis fixnowapp.com/download (?store=1) sur téléphone : la vitrine s'affiche, puis le store s'ouvre
-  // par-dessus. Le paramètre est retiré de l'adresse pour qu'un retour ou un rechargement ne relance pas le store.
-  var query = new URLSearchParams(location.search);
-  if (query.has("store")) {
-    query.delete("store");
-    var rest = query.toString();
-    history.replaceState(null, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
-    if (os === "ios" || os === "android") {
-      var storeUrl = os === "ios" ? APP_STORE_URL : playUrl();
-      setTimeout(function () { location.href = storeUrl; }, 400); // laisse le temps au hero de s'afficher
-    }
-  }
 
   // Réseaux sociaux : masque les liens non renseignés
   document.querySelectorAll("[data-social]").forEach(function (a) {
