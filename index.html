@@ -671,6 +671,19 @@ var SOCIAL_URLS = {
   });
   if (os === "android") document.querySelectorAll(".stores").forEach(function (s) { s.classList.add("android-first"); });
 
+  // Arrivée depuis fixnowapp.com/download (?store=1) sur téléphone : la vitrine s'affiche, puis le store s'ouvre
+  // par-dessus. Le paramètre est retiré de l'adresse pour qu'un retour ou un rechargement ne relance pas le store.
+  var query = new URLSearchParams(location.search);
+  if (query.has("store")) {
+    query.delete("store");
+    var rest = query.toString();
+    history.replaceState(null, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
+    if (os === "ios" || os === "android") {
+      var storeUrl = os === "ios" ? APP_STORE_URL : playUrl();
+      setTimeout(function () { location.href = storeUrl; }, 400); // laisse le temps au hero de s'afficher
+    }
+  }
+
   // Réseaux sociaux : masque les liens non renseignés
   document.querySelectorAll("[data-social]").forEach(function (a) {
     var url = SOCIAL_URLS[a.getAttribute("data-social")];

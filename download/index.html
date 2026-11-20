@@ -27,17 +27,17 @@
     var isAndroid = /android/i.test(ua);
     var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
-    // Paramètres UTM (Meta / TikTok Ads) transmis à Google Play pour l'attribution
-    var p = new URLSearchParams(location.search), ref = [];
-    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
-      if (p.get(k)) ref.push(k + "=" + p.get(k));
-    });
-    var play = ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
-
-    // location.replace : le bouton « retour » ne ramène pas sur cette page vide
-    if (isAndroid) location.replace(play);
-    else if (isIOS) location.replace(APP_STORE_URL);
-    else location.replace("/" + location.search + "#telecharger"); // ordinateur : vitrine avec les deux stores
+    // Téléphone : on passe par la vitrine, qui ouvre ensuite le bon store. Ainsi, derrière le store
+    // (feuille App Store, retour depuis Google Play, navigateur d'Instagram), c'est le site qui s'affiche.
+    // Les paramètres UTM suivent : la vitrine les transmet à Google Play.
+    // location.replace : le bouton « retour » ne ramène pas sur cette page vide.
+    var p = new URLSearchParams(location.search);
+    if (isAndroid || isIOS) {
+      p.set("store", "1");
+      location.replace("/?" + p.toString());
+    } else {
+      location.replace("/" + location.search + "#telecharger"); // ordinateur : vitrine avec les deux stores
+    }
   })();
 </script>
 <style>
