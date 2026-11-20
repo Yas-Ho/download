@@ -396,8 +396,9 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 /* Footer */
 .footer { background: var(--ink); color: var(--paper); padding: 64px 0 40px; }
 .footer-top { display: grid; gap: 36px; }
-.footer .brand { color: var(--yellow); font-size: 1.5rem; }
-.footer .brand-mark { width: 26px; height: 33px; }
+.footer .brand { color: var(--yellow); font-size: 1.5rem; gap: 12px; }
+.footer .brand-tile { width: 46px; height: 46px; border-radius: 13px; }
+.footer .brand-tile .brand-mark { width: 23px; height: 29px; }
 .footer-slogan { margin-top: 10px; font-family: var(--hand); font-size: 1.75rem; color: #E8E8E8; transform: rotate(-3deg); transform-origin: left; display: inline-block; }
 .footer .stores { margin-top: 0; }
 .footer .store { background: #1E1E1E; box-shadow: inset 0 0 0 1px #333; }
@@ -701,7 +702,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <a class="brand" href="#top" aria-label="FixNow, retour en haut de page"><svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg>FixNow</a>
+        <a class="brand" href="#top" aria-label="FixNow, retour en haut de page"><span class="brand-tile"><svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg></span>FixNow</a>
         <div><span class="footer-slogan" lang="fr">votre prix, vos pros</span></div>
       </div>
       <div class="stores">
