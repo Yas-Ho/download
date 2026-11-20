@@ -1,30 +1,751 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Télécharger FixNow</title>
-    <script>
-        window.onload = function() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FixNow : un pro chez vous, au prix que vous proposez</title>
+<meta name="description" content="Plombier, électricien, ménage, serrurier, déménagement… Proposez votre prix et choisissez parmi les offres de prestataires vérifiés près de chez vous. Disponible au Maroc sur iOS et Android.">
+<meta name="theme-color" content="#f1bc2e">
+<link rel="canonical" href="https://fixnowapp.com/">
 
-            // Liens officiels de tes stores
-            const appStoreUrl = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
-            const playStoreUrl = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
-            const defaultUrl = "https://play.google.com/store/apps/details?id=com.houmane.fixnow"; // Lien de secours par défaut
+<!-- Open Graph : aperçu WhatsApp / Instagram / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FixNow">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:url" content="https://fixnowapp.com/">
+<meta property="og:title" content="FixNow : un pro chez vous, au prix que vous proposez">
+<meta property="og:description" content="Proposez votre prix, recevez les offres de prestataires vérifiés près de chez vous. iOS et Android.">
+<meta property="og:image" content="https://fixnowapp.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo FixNow sur fond jaune : un pro chez vous, au prix que vous proposez">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FixNow : un pro chez vous, au prix que vous proposez">
+<meta name="twitter:description" content="Proposez votre prix, recevez les offres de prestataires vérifiés près de chez vous.">
+<meta name="twitter:image" content="https://fixnowapp.com/og-image.png">
 
-            if (/android/i.test(userAgent)) {
-                window.location.href = playStoreUrl;
-            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = appStoreUrl;
-            } else {
-                window.location.href = appStoreUrl; // Par défaut pour le web/desktop, redirige vers l'App Store
-            }
-        };
-    </script>
+<!-- Liens app natifs (bannière Safari iOS) -->
+<meta name="apple-itunes-app" content="app-id=6761471898">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='224' fill='%23f1bc2e'/%3E%3Cpath fill='%230A0A0A' fill-rule='evenodd' d='M243 312V860H373V662C380 626 402 604 440 600C470 597 505 612 540 627L578 641V378C580 348 596 326 612 310H797V289C772 252 735 210 683 188C625 164 562 163 520 184C482 203 452 232 422 256C382 287 345 303 305 309ZM387 378H513Q527 378 527 392V516Q527 530 513 530H387Q373 530 373 516V392Q373 378 387 378Z'/%3E%3Cpath fill='%230A0A0A' d='M606 455H797V476C780 510 742 545 692 567C662 581 632 590 606 592Z'/%3E%3Cpath d='M406 414 491 393M406 461 491 440M406 507 491 486' stroke='%230A0A0A' stroke-width='24' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<!-- Police du slogan de l'app, chargée uniquement pour les lettres du slogan -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap&text=votreprix%2Cvospros%20">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "FixNow",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "LifestyleApplication",
+  "description": "Services à domicile au Maroc : proposez votre prix et choisissez parmi les offres de prestataires vérifiés.",
+  "url": "https://fixnowapp.com/",
+  "installUrl": ["https://apps.apple.com/ma/app/fixnow/id6761471898", "https://play.google.com/store/apps/details?id=com.houmane.fixnow"]
+}
+</script>
+
+<style>
+:root {
+  --ink: #0A0A0A;
+  --paper: #FFFFFF;
+  --yellow: #f1bc2e;
+  --mist: #F2F2F2;
+  --line: #E2E2E2;
+  --gray: #545454;
+  --gray-dark: #8A8A8A;
+  --ink-2: #1C1C1C;
+
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hand: "Covered By Your Grace", "Segoe Print", "Bradley Hand", cursive;
+
+  --gutter: 20px;
+  --max: 1160px;
+  --nav-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 12px); }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.022em; line-height: 1.05; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+.on-dark :focus-visible { outline-color: var(--yellow); }
+
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--ink); color: var(--paper); padding: 10px 14px; border-radius: 8px; font-weight: 700; text-decoration: none;
+}
+.skip:focus { top: 12px; }
+
+.wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ---------- Logo ---------- */
+.brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.035em; }
+.brand-mark { width: 22px; height: 28px; flex: none; }
+
+/* ---------- Navbar ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--yellow);
+  transition: background-color .25s ease, box-shadow .25s ease;
+}
+.nav.is-scrolled { background: rgba(255,255,255,.92); box-shadow: 0 1px 0 var(--line); -webkit-backdrop-filter: saturate(1.6) blur(14px); backdrop-filter: saturate(1.6) blur(14px); }
+.nav-inner { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.nav-links { display: none; gap: 28px; font-weight: 600; font-size: .9375rem; }
+.nav-links a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
+.nav-links a:hover { border-bottom-color: currentColor; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 18px; border-radius: 12px;
+  font: 700 .9375rem/1 var(--font); text-decoration: none; border: 0; cursor: pointer;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-ink { background: var(--ink); color: var(--paper); }
+.btn-ink:hover { background: #2a2a2a; }
+.btn-yellow { background: var(--yellow); color: var(--ink); }
+.btn-yellow:hover { background: #f5c94f; }
+.btn-lg { min-height: 54px; padding: 0 26px; font-size: 1.0625rem; border-radius: 14px; }
+
+/* ---------- Hero ---------- */
+.hero { background: var(--yellow); overflow: hidden; }
+.hero-inner { display: grid; gap: 40px; padding-top: 18px; padding-bottom: 0; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 12px 7px 10px; border-radius: 999px;
+  background: rgba(10,10,10,.08); font-size: .8125rem; font-weight: 700; letter-spacing: -0.005em;
+}
+.pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+.hero h1 { margin-top: 18px; font-size: clamp(2.4rem, 10.2vw, 4.6rem); letter-spacing: -0.032em; line-height: 1; max-width: 12ch; }
+.hero-sub { margin-top: 18px; font-size: 1.0625rem; font-weight: 500; line-height: 1.5; max-width: 34ch; color: #2b2410; }
+
+.stores { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+.store {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 54px; padding: 0 18px 0 14px; border-radius: 12px;
+  background: var(--ink); color: var(--paper); text-decoration: none;
+  transition: transform .15s ease, background-color .15s ease;
+  flex: 1 1 0; min-width: 160px; max-width: 220px;
+}
+.store:hover { background: #262626; }
+.store:active { transform: scale(.97); }
+.store svg { width: 24px; height: 24px; flex: none; }
+.store span { display: flex; flex-direction: column; line-height: 1.1; white-space: nowrap; }
+.store small { font-size: .6875rem; font-weight: 500; opacity: .85; letter-spacing: .01em; }
+.store strong { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em; }
+.stores.android-first .store-android { order: -1; }
+
+.direct { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9375rem; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+.direct svg { width: 18px; height: 18px; }
+
+/* Phone mockup */
+.stage { position: relative; display: flex; justify-content: center; padding-top: 34px; }
+.slogan {
+  position: absolute; z-index: 2; top: 0; left: 50%; transform: translateX(-148px) rotate(-6deg);
+  font-family: var(--hand); font-size: 1.9rem; line-height: 1; white-space: nowrap;
+}
+.slogan svg { position: absolute; width: 46px; height: 40px; left: 100%; top: 14px; margin-left: 2px; }
+
+.phone {
+  position: relative; width: 300px; height: 560px; margin-bottom: -44px;
+  border-radius: 48px; background: var(--ink); padding: 11px;
+  box-shadow: 0 40px 80px -30px rgba(60,40,0,.55);
+}
+.screen { position: relative; height: 100%; border-radius: 38px; background: var(--paper); overflow: hidden; font-size: 13px; }
+.island { position: absolute; top: 10px; left: 50%; width: 92px; height: 26px; margin-left: -46px; border-radius: 20px; background: var(--ink); z-index: 3; }
+.app-top { display: flex; align-items: center; gap: 10px; padding: 50px 16px 10px; font-weight: 800; font-size: 16px; letter-spacing: -0.02em; }
+.app-top .back { width: 30px; height: 30px; border-radius: 50%; background: var(--mist); display: grid; place-items: center; }
+.app-top .back svg { width: 14px; height: 14px; }
+.map { position: relative; height: 92px; margin: 0 14px; border-radius: 16px; background: var(--mist); overflow: hidden; }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.price {
+  margin: 12px 14px 0; padding: 12px 14px; border-radius: 16px; border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.price-label { font-size: 11.5px; color: var(--gray); font-weight: 600; }
+.price-value { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.price-edit { font-size: 11.5px; font-weight: 700; padding: 6px 10px; border-radius: 9px; background: var(--mist); }
+.offers-head { display: flex; align-items: center; justify-content: space-between; margin: 16px 16px 8px; font-weight: 800; font-size: 13.5px; }
+.live { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--gray); }
+.live i { width: 7px; height: 7px; border-radius: 50%; background: #22a35a; }
+.offer {
+  display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px;
+  margin: 0 14px 8px; padding: 10px 12px; border-radius: 14px; background: var(--mist);
+}
+.offer.is-best { background: var(--paper); box-shadow: inset 0 0 0 2px var(--yellow); }
+.avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-weight: 800; font-size: 12px; }
+.avatar.is-agency { background: var(--yellow); color: var(--ink); }
+.offer-name { font-weight: 700; font-size: 13px; line-height: 1.2; display: flex; align-items: center; gap: 4px; }
+.offer-name svg { width: 13px; height: 13px; }
+.offer-meta { font-size: 11.5px; color: var(--gray); display: flex; gap: 8px; margin-top: 2px; }
+.offer-price { text-align: right; font-weight: 800; font-size: 15px; letter-spacing: -0.02em; }
+.accept { display: block; margin-top: 4px; font-size: 10.5px; font-weight: 800; padding: 4px 8px; border-radius: 7px; background: var(--yellow); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .offer { animation: offer-in .5s cubic-bezier(.2,.8,.2,1) both; }
+  .offer:nth-of-type(1) { animation-delay: .7s; }
+  .offer:nth-of-type(2) { animation-delay: 1.5s; }
+  .offer:nth-of-type(3) { animation-delay: 2.3s; }
+  @keyframes offer-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 84px 0; }
+.section-head { max-width: 40rem; }
+.section-head h2 { font-size: clamp(2rem, 7.4vw, 3.25rem); }
+.section-head p { margin-top: 14px; color: var(--gray); font-size: 1.0625rem; max-width: 36rem; }
+
+/* Services */
+.grid {
+  margin-top: 32px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;
+}
+.tile {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 64px; padding: 12px 14px; border-radius: 16px; background: var(--mist);
+  font-weight: 700; font-size: .9375rem; line-height: 1.2; letter-spacing: -0.01em;
+}
+.tile svg { flex: none; width: 26px; height: 26px; fill: none; stroke: var(--ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Steps */
+.steps-section { border-top: 1px solid var(--line); }
+.steps { margin-top: 40px; display: grid; gap: 0; counter-reset: step; }
+.step { position: relative; display: grid; grid-template-columns: 52px 1fr; align-content: start; gap: 18px; padding-bottom: 36px; }
+.step:last-child { padding-bottom: 0; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  width: 52px; height: 52px; border-radius: 14px; background: var(--yellow);
+  display: grid; place-items: center; font-weight: 800; font-size: 1.375rem; letter-spacing: -0.03em;
+}
+.step::after { content: ""; position: absolute; left: 25px; top: 62px; bottom: 10px; width: 2px; background: var(--line); }
+.step:last-child::after { display: none; }
+.step h3 { font-size: 1.3125rem; letter-spacing: -0.025em; line-height: 1.2; padding-top: 12px; }
+.step p { margin-top: 8px; color: var(--gray); max-width: 30rem; }
+
+/* Providers */
+.pros { background: var(--ink); color: var(--paper); }
+.pros-inner { display: grid; gap: 44px; }
+.pros h2 { font-size: clamp(2.1rem, 8vw, 3.5rem); max-width: 13ch; }
+.pros-lead { margin-top: 16px; color: #BDBDBD; max-width: 32rem; }
+.cities { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.city { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border-radius: 999px; border: 1px solid #333; font-weight: 700; font-size: .875rem; }
+.city svg { width: 15px; height: 15px; stroke: var(--yellow); fill: none; stroke-width: 2; }
+.pros-cta { margin-top: 30px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.pros-note { font-size: .875rem; color: var(--gray-dark); max-width: 30rem; }
+.perks { display: grid; gap: 1px; background: #262626; border-radius: 20px; overflow: hidden; }
+.perk { background: var(--ink-2); padding: 22px 20px; display: grid; grid-template-columns: 40px 1fr; gap: 14px; }
+.perk-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--yellow); display: grid; place-items: center; }
+.perk-icon svg { width: 22px; height: 22px; fill: none; stroke: var(--ink); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.perk h3 { font-size: 1.0625rem; letter-spacing: -0.015em; line-height: 1.3; }
+.perk p { margin-top: 4px; font-size: .9375rem; color: #A8A8A8; }
+
+/* FAQ */
+.faq-list { margin-top: 32px; border-top: 1px solid var(--line); max-width: 46rem; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 22px 0; font-weight: 700; font-size: 1.0625rem; letter-spacing: -0.015em; line-height: 1.35;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:focus-visible { outline-offset: 0; }
+.plus { position: relative; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--mist); transition: background-color .2s ease, transform .25s ease; }
+.plus::before, .plus::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; background: var(--ink); border-radius: 2px; }
+.plus::after { transform: rotate(90deg); transition: transform .25s ease; }
+.faq-item[open] .plus { background: var(--yellow); }
+.faq-item[open] .plus::after { transform: rotate(0deg); }
+.faq-body { padding: 0 46px 24px 0; color: var(--gray); max-width: 40rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .faq-item[open] .faq-body { animation: faq-open .28s ease both; }
+  @keyframes faq-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+}
+
+/* Footer */
+.footer { background: var(--ink); color: var(--paper); padding: 64px 0 40px; }
+.footer-top { display: grid; gap: 36px; }
+.footer .brand { color: var(--yellow); font-size: 1.5rem; }
+.footer .brand-mark { width: 26px; height: 33px; }
+.footer-slogan { margin-top: 10px; font-family: var(--hand); font-size: 1.75rem; color: #E8E8E8; transform: rotate(-3deg); transform-origin: left; display: inline-block; }
+.footer .stores { margin-top: 0; }
+.footer .store { background: #1E1E1E; box-shadow: inset 0 0 0 1px #333; }
+.footer .store:hover { background: #2a2a2a; }
+.footer-cols { display: grid; grid-template-columns: 1fr; gap: 28px; }
+.footer-cols h3 { font-size: .875rem; font-weight: 700; color: var(--gray-dark); letter-spacing: 0; margin-bottom: 12px; }
+.footer-cols li + li { margin-top: 10px; }
+.footer-cols a { text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+.footer-cols a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer-cols svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.footer-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: .875rem; color: var(--gray-dark); }
+
+.privacy { margin-top: 36px; border: 1px solid #262626; border-radius: 16px; }
+.privacy summary { cursor: pointer; list-style: none; padding: 16px 18px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.privacy summary::-webkit-details-marker { display: none; }
+.privacy .plus { background: #1E1E1E; }
+.privacy .plus::before, .privacy .plus::after { background: var(--paper); }
+.privacy[open] .plus { background: var(--yellow); }
+.privacy[open] .plus::before, .privacy[open] .plus::after { background: var(--ink); }
+.privacy-body { padding: 0 18px 22px; color: #BDBDBD; font-size: .9375rem; max-width: 46rem; }
+.privacy-body h3 { color: var(--paper); font-size: 1rem; letter-spacing: -0.01em; margin: 18px 0 6px; }
+.privacy-body ul { list-style: disc; padding-left: 1.2em; }
+.privacy-body li + li { margin-top: 4px; }
+.privacy-body a { color: var(--yellow); }
+
+/* Sticky mobile download bar */
+.dock {
+  position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 60;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 10px 10px 12px; border-radius: 18px;
+  background: var(--ink); color: var(--paper);
+  box-shadow: 0 16px 40px -12px rgba(0,0,0,.5);
+  transform: translateY(140%); transition: transform .35s cubic-bezier(.2,.8,.2,1);
+}
+.dock.is-visible { transform: none; }
+.dock-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--yellow); display: grid; place-items: center; flex: none; }
+.dock-icon svg { width: 18px; height: 23px; color: var(--ink); }
+.dock-text { flex: 1; min-width: 0; line-height: 1.2; }
+.dock-text strong { display: block; font-size: .9375rem; }
+.dock-text span { font-size: .8125rem; color: #BDBDBD; }
+.dock .btn { flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* ---------- ≥ 600px ---------- */
+@media (min-width: 600px) {
+  :root { --gutter: 32px; }
+  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .tile { flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 20px; min-height: 128px; padding: 18px; }
+  .tile svg { width: 28px; height: 28px; }
+  .footer-cols { grid-template-columns: repeat(3, auto); justify-content: start; gap: 64px; }
+}
+
+/* ---------- ≥ 960px : desktop ---------- */
+@media (min-width: 960px) {
+  :root { --nav-h: 72px; }
+  body { font-size: 1.125rem; }
+  .nav-links { display: flex; }
+  .hero-inner { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 48px; padding-top: 40px; min-height: min(calc(100vh - var(--nav-h)), 780px); }
+  .hero-copy { padding-bottom: 64px; }
+  .hero h1 { font-size: clamp(3.6rem, 5.6vw, 5rem); }
+  .hero-sub { font-size: 1.1875rem; margin-top: 22px; }
+  .stores { margin-top: 32px; }
+  .stage { align-self: end; padding-top: 0; }
+  .phone { width: 320px; height: 620px; margin-bottom: -70px; }
+  .slogan { top: 150px; left: auto; right: calc(50% + 200px); transform: rotate(-7deg); font-size: 2.25rem; }
+  .slogan svg { left: auto; right: -48px; top: 26px; }
+  .section { padding: 120px 0; }
+  .grid { grid-template-columns: repeat(6, 1fr); }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .step { grid-template-columns: 1fr; gap: 20px; padding-bottom: 0; }
+  .step::after { left: 68px; right: -28px; top: 25px; bottom: auto; width: auto; height: 2px; }
+  .step h3 { padding-top: 0; }
+  .pros-inner { grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .footer-top { grid-template-columns: 1fr auto; align-items: start; }
+  .footer .store { flex: none; }
+  .dock { display: none; }
+}
+@media (max-width: 959px) { body.has-dock { padding-bottom: 84px; } }
+@media (max-width: 370px) {
+  .store { min-width: 0; padding: 0 12px 0 10px; }
+  .store strong { font-size: 1rem; }
+  .slogan { transform: translateX(-130px) rotate(-6deg); font-size: 1.7rem; }
+}
+</style>
 </head>
-<body style="background: #000000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif;">
-    <!-- Un spinner de chargement minimaliste pendant la redirection flash -->
-    <div style="color: #ffffff; font-size: 18px; font-weight: 500; letter-spacing: 0.5px;">Redirection en cours...</div>
+<body>
+
+<!-- Logo FixNow : clé à molette en F (tracé d'après assets/icon.png) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="fx-mark" viewBox="236 160 568 706">
+    <path fill="currentColor" fill-rule="evenodd" d="M243 312V860H373V662C380 626 402 604 440 600C470 597 505 612 540 627L578 641V378C580 348 596 326 612 310H797V289C772 252 735 210 683 188C625 164 562 163 520 184C482 203 452 232 422 256C382 287 345 303 305 309ZM387 378H513Q527 378 527 392V516Q527 530 513 530H387Q373 530 373 516V392Q373 378 387 378Z"/>
+    <path fill="currentColor" d="M606 455H797V476C780 510 742 545 692 567C662 581 632 590 606 592Z"/>
+    <path d="M406 414 491 393M406 461 491 440M406 507 491 486" stroke="currentColor" stroke-width="22" stroke-linecap="round" fill="none"/>
+  </symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.37 12.73c-.02-2.33 1.9-3.45 1.99-3.5-1.08-1.59-2.77-1.8-3.37-1.83-1.43-.15-2.8.84-3.53.84-.73 0-1.85-.82-3.04-.8-1.56.02-3 .91-3.81 2.31-1.62 2.82-.41 6.99 1.17 9.28.77 1.12 1.69 2.38 2.9 2.34 1.16-.05 1.6-.75 3.01-.75 1.4 0 1.8.75 3.03.73 1.25-.02 2.04-1.14 2.81-2.27.88-1.3 1.25-2.56 1.27-2.62-.03-.01-2.43-.93-2.43-3.73zM14.06 5.88c.64-.78 1.08-1.86.96-2.94-.93.04-2.05.62-2.71 1.39-.6.69-1.12 1.79-.98 2.85 1.03.08 2.09-.53 2.73-1.3z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M3.6 1.8c-.24.25-.38.64-.38 1.14v18.12c0 .5.14.89.38 1.14l.06.06L13.8 12.1v-.24L3.66 1.74l-.06.06zM17.18 15.5l-3.38-3.38v-.24l3.38-3.38.08.04 4 2.27c1.14.65 1.14 1.71 0 2.36l-4 2.27-.08.06zM17.26 15.44 13.8 12 3.6 22.2c.38.4 1 .45 1.71.05l11.95-6.8M17.26 8.56 5.31 1.77C4.6 1.36 3.98 1.41 3.6 1.81L13.8 12l3.46-3.44z"/></symbol>
+</svg>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="FixNow, retour en haut de page">
+      <svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg>FixNow
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#comment-ca-marche">Comment ça marche</a>
+      <a href="#prestataires">Prestataires</a>
+    </nav>
+    <a class="btn btn-ink" href="#telecharger" data-store="auto">Télécharger</a>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <!-- HERO -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="pill"><span class="pill-dot" aria-hidden="true"></span>Disponible au Maroc • iOS & Android</span>
+        <h1 id="hero-title">Un pro chez vous, au prix que vous proposez</h1>
+        <p class="hero-sub">Plombier, électricien, ménage, serrurier, déménagement… Proposez votre prix, recevez les offres de prestataires vérifiés près de chez vous, puis choisissez la meilleure</p>
+
+        <div class="stores" id="telecharger">
+          <a class="store store-ios" data-store="ios" href="https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            <span><small>Télécharger dans</small><strong>l'App Store</strong></span>
+          </a>
+          <a class="store store-android" data-store="android" href="https://play.google.com/store/apps/details?id=com.houmane.fixnow" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-play"/></svg>
+            <span><small>DISPONIBLE SUR</small><strong>Google Play</strong></span>
+          </a>
+        </div>
+        <a class="direct" href="/download">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+          Télécharger pour mon téléphone
+        </a>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <p class="slogan">votre prix, vos pros
+          <svg viewBox="0 0 46 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6c14-2 30 4 36 26"/><path d="M31 27l8 6 3-10"/></svg>
+        </p>
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+            <div class="app-top">
+              <span class="back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></span>
+              Plomberie
+            </div>
+            <div class="map">
+              <svg viewBox="0 0 270 92" preserveAspectRatio="xMidYMid slice">
+                <path d="M-10 64 C60 50 90 80 150 60 S240 30 290 42" stroke="#fff" stroke-width="9" fill="none"/>
+                <path d="M88 -10 L120 110 M200 -10 L180 110 M-10 22 L290 30" stroke="#fff" stroke-width="5" fill="none"/>
+                <path d="M60 58 C90 46 120 60 150 60" stroke="#0A0A0A" stroke-width="3" stroke-dasharray="5 5" fill="none"/>
+                <circle cx="60" cy="58" r="7" fill="#0A0A0A"/><circle cx="60" cy="58" r="2.5" fill="#fff"/>
+                <path d="M150 36c-7 0-12 5-12 11 0 9 12 19 12 19s12-10 12-19c0-6-5-11-12-11z" fill="#f1bc2e" stroke="#0A0A0A" stroke-width="2"/>
+                <circle cx="150" cy="47" r="4" fill="#0A0A0A"/>
+              </svg>
+            </div>
+            <div class="price">
+              <div><div class="price-label">Votre prix</div><div class="price-value">150 DH</div></div>
+              <span class="price-edit">Modifier</span>
+            </div>
+            <div class="offers-head">Offres reçues <span class="live"><i></i><span id="offer-count">3</span> en direct</span></div>
+            <div class="offer is-best">
+              <span class="avatar">YB</span>
+              <div><div class="offer-name">Youssef B.</div><div class="offer-meta"><span>★ 4,9</span><span>à 8 min</span></div></div>
+              <div class="offer-price">150 DH<span class="accept">Accepter</span></div>
+            </div>
+            <div class="offer">
+              <span class="avatar is-agency">RS</span>
+              <div><div class="offer-name">Riad Services <svg viewBox="0 0 24 24"><path fill="#0A0A0A" d="M12 1l3 2.4 3.8-.3.9 3.7 3.2 2.1-1.5 3.6 1.5 3.6-3.2 2.1-.9 3.7-3.8-.3L12 23l-3-2.4-3.8.3-.9-3.7L1.1 15.1 2.6 11.5 1.1 7.9l3.2-2.1.9-3.7 3.8.3z"/><path d="M8 12l3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="offer-meta"><span>★ 4,8</span><span>à 12 min</span></div></div>
+              <div class="offer-price">170 DH</div>
+            </div>
+            <div class="offer">
+              <span class="avatar">HE</span>
+              <div><div class="offer-name">Hamza E.</div><div class="offer-meta"><span>★ 4,7</span><span>à 15 min</span></div></div>
+              <div class="offer-price">160 DH</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="services-title">De la fuite d'eau au déménagement</h2>
+        <p>Choisissez le service, décrivez le besoin en deux lignes ou avec une photo. Les pros de votre quartier reçoivent la demande</p>
+      </div>
+      <ul class="grid">
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h9a4 4 0 0 1 4 4v1"/><path d="M3 5v6"/><path d="M8 8V5M6 5h4"/><path d="M14 13h4"/><path d="M16 17s-1.5 1.8-1.5 3a1.5 1.5 0 0 0 3 0c0-1.2-1.5-3-1.5-3z"/></svg>Plomberie</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h8l-1 8 9-12h-8l1-8z"/></svg>Électricité</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2l-7 9"/><path d="M10.5 9.5l4 4"/><path d="M14.5 13.5c-1.3 3.5-4.5 6.6-9 8.5L2 18.5C3.9 14 7 10.8 10.5 9.5"/><path d="M5.5 22l2.5-4.5M3.6 20.2 7.5 16"/></svg>Ménage</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 20 3"/><path d="M16.5 6.5l3 3M14 9l2 2"/></svg>Serrurier</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><circle cx="12" cy="13.5" r="4.5"/><path d="M7.5 6h.01M10.5 6h.01"/></svg>Électroménager</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="15" height="6" rx="1.5"/><path d="M17.5 6h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H12a2 2 0 0 0-2 2v1"/><rect x="8.5" y="15" width="3" height="6.5" rx="1"/></svg>Peinture</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 12 6.6 20.4a2.1 2.1 0 0 1-3-3L12 9"/><path d="M17.6 15.4 22 11"/><path d="M21.5 11.5 19.6 9.6A2 2 0 0 1 19 8.2V7l-2.3-2.3A6 6 0 0 0 12.5 3H9l.9.8A6.2 6.2 0 0 1 12 8.4V10l2 2h1.2a2 2 0 0 1 1.4.6l1.9 1.9"/></svg>Menuiserie</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M12 20c0-4 .5-7 2-10"/><path d="M12 13.5c-3.5.3-6-1.4-7-5.5 3.8-.4 6.3 1.3 7 5.5z"/><path d="M13.6 10.6c.2-3.6 2.4-6 6.4-6.6-.1 4-2.4 6.3-6.4 6.6z"/></svg>Jardinage</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="m3 8 9 5 9-5M12 13v8"/><path d="m7.5 5.5 9 5"/></svg>Déménagement</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg>Mécanique</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-4l2.2-5h11.6l2.2 5v4z"/><path d="M4 16h16"/><path d="M7 20v1.5M17 20v1.5"/><path d="M9 3s-1.2 1.4-1.2 2.3a1.2 1.2 0 0 0 2.4 0C10.2 4.4 9 3 9 3zM15 3s-1.2 1.4-1.2 2.3a1.2 1.2 0 0 0 2.4 0C16.2 4.4 15 3 15 3z"/></svg>Lavage auto</li>
+        <li class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>Coiffure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="section steps-section" id="comment-ca-marche" aria-labelledby="steps-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="steps-title">Comment ça marche</h2>
+        <p>Trois étapes, sans appel ni devis à rallonge</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <div>
+            <h3>Choisissez votre service</h3>
+            <p>Décrivez le problème, ajoutez une photo ou une note vocale, et indiquez le prix que vous êtes prêt à payer</p>
+          </div>
+        </li>
+        <li class="step">
+          <div>
+            <h3>Un prestataire vérifié intervient</h3>
+            <p>Les pros disponibles autour de vous envoient leur offre. Comparez prix, note et délai, puis acceptez celle qui vous convient</p>
+          </div>
+        </li>
+        <li class="step">
+          <div>
+            <h3>Suivez et évaluez en toute sérénité</h3>
+            <p>Suivez son arrivée sur la carte, échangez par chat, puis notez l'intervention une fois le travail terminé</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRESTATAIRES & AGENCES -->
+  <section class="section pros on-dark" id="prestataires" aria-labelledby="pros-title">
+    <div class="wrap pros-inner">
+      <div>
+        <h2 id="pros-title">Recevez des clients près de chez vous</h2>
+        <p class="pros-lead">Artisans indépendants et agences de services : FixNow vous envoie des demandes réelles, avec le prix du client affiché dès le départ</p>
+        <ul class="cities" aria-label="Villes actives">
+          <li class="city"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>El Jadida</li>
+          <li class="city"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Casablanca</li>
+        </ul>
+        <div class="pros-cta">
+          <a class="btn btn-yellow btn-lg" href="/download">Devenir prestataire</a>
+          <p class="pros-note">Même application : choisissez le profil Prestataire ou Agence à l'inscription</p>
+        </div>
+      </div>
+      <ul class="perks">
+        <li class="perk">
+          <span class="perk-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="18" cy="16" r="3"/></svg></span>
+          <div><h3>Le prix avant de vous déplacer</h3><p>Vous voyez le besoin et le prix proposé avant de vous engager</p></div>
+        </li>
+        <li class="perk">
+          <span class="perk-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg></span>
+          <div><h3>Votre tarif, votre offre</h3><p>Le prix ne vous convient pas ? Envoyez votre propre offre au client</p></div>
+        </li>
+        <li class="perk">
+          <span class="perk-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.5 3.2-5.5 6.5-5.5s5.9 2 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c2 .7 3.2 2.5 3.5 5.2"/></svg></span>
+          <div><h3>Un compte agence pour votre équipe</h3><p>Répartissez les demandes entre vos techniciens et suivez chaque intervention</p></div>
+        </li>
+        <li class="perk">
+          <span class="perk-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18M16 15h2"/><path d="M7 6V4.5h10V6"/></svg></span>
+          <div><h3>Solde et reçus dans l'app</h3><p>Chaque intervention est enregistrée, avec un reçu pour vous et votre client</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="faq-title">Questions fréquentes</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item" name="faq">
+          <summary>Dans quelles villes FixNow est-il disponible ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>FixNow est actif à El Jadida et Casablanca, et s'ouvre progressivement à d'autres villes du Maroc. Installez l'app pour voir les prestataires disponibles autour de vous.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Comment les prestataires sont-ils vérifiés ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Chaque prestataire envoie sa pièce d'identité à l'inscription. Notre équipe la contrôle avant d'activer son profil. Ensuite, chaque intervention est notée par le client, et ces notes sont visibles sur son profil.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Comment se passe le paiement ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Le prix est fixé avant l'intervention : c'est celui de l'offre que vous acceptez dans l'app. Vous réglez directement le prestataire en espèces, une fois le travail terminé.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Je suis artisan ou agence, comment m'inscrire ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Téléchargez FixNow, choisissez le profil Prestataire ou Agence et envoyez vos documents. Dès que votre profil est validé, vous recevez les demandes de votre zone.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer on-dark">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#top" aria-label="FixNow, retour en haut de page"><svg class="brand-mark" aria-hidden="true"><use href="#fx-mark"/></svg>FixNow</a>
+        <div><span class="footer-slogan" lang="fr">votre prix, vos pros</span></div>
+      </div>
+      <div class="stores">
+        <a class="store store-ios" data-store="ios" href="https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-apple"/></svg>
+          <span><small>Télécharger dans</small><strong>l'App Store</strong></span>
+        </a>
+        <a class="store store-android" data-store="android" href="https://play.google.com/store/apps/details?id=com.houmane.fixnow" rel="noopener">
+          <svg aria-hidden="true"><use href="#i-play"/></svg>
+          <span><small>DISPONIBLE SUR</small><strong>Google Play</strong></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-cols" style="margin-top:48px">
+      <div>
+        <h3>Suivre FixNow</h3>
+        <ul>
+          <li><a data-social="instagram" href="https://www.instagram.com/fixnow.app/" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>@fixnow.app</a></li>
+          <li><a data-social="linkedin" href="https://www.linkedin.com/company/112291596/" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.5v.01M12 16v-5.5M12 13c0-1.7 1-2.6 2.3-2.6S16 11.2 16 13v3"/></svg>LinkedIn</a></li>
+          <li><a data-social="facebook" href="https://www.facebook.com/fixnow.officiel" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V9H6.5v3.5H9V21h3.5v-8.5h2.7l.5-3.5h-3.2V7a1 1 0 0 1 1-1H15z"/></svg>Facebook</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:contact@fixnowapp.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>contact@fixnowapp.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="privacy" id="confidentialite">
+      <summary>Politique de confidentialité<span class="plus" aria-hidden="true"></span></summary>
+      <div class="privacy-body">
+        <p>Cette politique explique quelles données l'application FixNow utilise et pourquoi. Elle s'applique aux clients, prestataires et agences.</p>
+        <h3>Données utilisées</h3>
+        <ul>
+          <li>Informations de compte : nom, numéro de téléphone, adresse e-mail.</li>
+          <li>Localisation, pendant l'utilisation de l'app : pour trouver les prestataires proches, calculer l'itinéraire et suivre une intervention en cours.</li>
+          <li>Photos, vidéos et notes vocales que vous choisissez d'envoyer pour décrire une demande ou échanger avec un prestataire.</li>
+          <li>Pièces d'identité et documents des prestataires et agences, uniquement pour vérifier leur profil.</li>
+          <li>Historique des demandes, offres, notes et reçus.</li>
+        </ul>
+        <h3>Utilisation</h3>
+        <p>Ces données servent à mettre en relation clients et prestataires, à sécuriser les échanges, à envoyer les notifications liées à vos demandes et à améliorer l'application. Le prestataire que vous choisissez reçoit uniquement les informations nécessaires à l'intervention.</p>
+        <h3>Vos droits</h3>
+        <p>Conformément à la loi marocaine n° 09-08, vous pouvez demander l'accès, la rectification ou la suppression de vos données, ainsi que la suppression de votre compte, en écrivant à <a href="mailto:contact@fixnowapp.com">contact@fixnowapp.com</a>.</p>
+      </div>
+    </details>
+
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> FixNow. Tous droits réservés.</span>
+      <span>Fait au Maroc</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Barre de téléchargement mobile (apparaît après le hero) -->
+<div class="dock" id="dock" aria-hidden="true">
+  <span class="dock-icon"><svg aria-hidden="true"><use href="#fx-mark"/></svg></span>
+  <span class="dock-text"><strong>FixNow</strong><span>Votre prix, vos pros</span></span>
+  <a class="btn btn-yellow" href="/download" data-store="auto" tabindex="-1">Télécharger</a>
+</div>
+
+<script>
+/* =========================================================
+   CONFIGURATION : remplacez les liens ici
+   ========================================================= */
+var APP_STORE_URL  = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
+var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
+var SOCIAL_URLS = {
+  instagram: "https://www.instagram.com/fixnow.app/",
+  linkedin:  "https://www.linkedin.com/company/112291596/",   // laisser vide = lien masqué
+  facebook:  "https://www.facebook.com/fixnow.officiel"       // laisser vide = lien masqué
+};
+
+(function () {
+  var ua = navigator.userAgent || "";
+  var os = /android/i.test(ua) ? "android"
+         : (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) ? "ios"
+         : "other";
+
+  // Transmet les paramètres UTM des pubs Meta/TikTok à Google Play (attribution des installations)
+  function playUrl() {
+    var p = new URLSearchParams(location.search), ref = [];
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (p.get(k)) ref.push(k + "=" + p.get(k));
+    });
+    return ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
+  }
+
+  document.querySelectorAll('[data-store="ios"]').forEach(function (a) { a.href = APP_STORE_URL; });
+  document.querySelectorAll('[data-store="android"]').forEach(function (a) { a.href = playUrl(); });
+  document.querySelectorAll('[data-store="auto"]').forEach(function (a) {
+    if (os === "ios") a.href = APP_STORE_URL;
+    else if (os === "android") a.href = playUrl();
+    else a.href = "#telecharger";
+  });
+  if (os === "android") document.querySelectorAll(".stores").forEach(function (s) { s.classList.add("android-first"); });
+
+  // Réseaux sociaux : masque les liens non renseignés
+  document.querySelectorAll("[data-social]").forEach(function (a) {
+    var url = SOCIAL_URLS[a.getAttribute("data-social")];
+    if (url) a.href = url; else a.closest("li").hidden = true;
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Compteur d'offres synchronisé avec l'animation du mockup
+  var count = document.getElementById("offer-count");
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    count.textContent = "0";
+    [900, 1700, 2500].forEach(function (t, i) { setTimeout(function () { count.textContent = String(i + 1); }, t); });
+  }
+
+  // Navbar : fond blanc une fois le hero dépassé ; barre de téléchargement mobile
+  var nav = document.getElementById("nav");
+  var dock = document.getElementById("dock");
+  var stores = document.getElementById("telecharger");
+  var dockLink = dock.querySelector("a");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (e) {
+      nav.classList.toggle("is-scrolled", !e[0].isIntersecting);
+    }, { rootMargin: "-" + (nav.offsetHeight + 1) + "px 0px 0px 0px" }).observe(document.querySelector(".hero-copy"));
+
+    new IntersectionObserver(function (e) {
+      var show = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
+      dock.classList.toggle("is-visible", show);
+      dock.setAttribute("aria-hidden", show ? "false" : "true");
+      dockLink.tabIndex = show ? 0 : -1;
+      document.body.classList.toggle("has-dock", show);
+    }).observe(stores);
+  }
+
+  // FAQ : une seule question ouverte à la fois (repli pour les navigateurs sans <details name>)
+  var items = document.querySelectorAll(".faq-item");
+  items.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) items.forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+
+  // Ouvre la politique de confidentialité quand on arrive sur #confidentialite
+  var privacy = document.getElementById("confidentialite");
+  function openPrivacy() { if (location.hash === "#confidentialite") privacy.open = true; }
+  window.addEventListener("hashchange", openPrivacy);
+  openPrivacy();
+})();
+</script>
 </body>
 </html>

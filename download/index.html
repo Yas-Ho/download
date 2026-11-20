@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Télécharger FixNow</title>
+<meta name="description" content="Téléchargez FixNow sur l'App Store ou Google Play : un pro chez vous, au prix que vous proposez.">
+<meta name="theme-color" content="#f1bc2e">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://fixnowapp.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FixNow">
+<meta property="og:url" content="https://fixnowapp.com/download">
+<meta property="og:title" content="Télécharger FixNow">
+<meta property="og:description" content="Un pro chez vous, au prix que vous proposez. iOS et Android.">
+<meta property="og:image" content="https://fixnowapp.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='224' fill='%23f1bc2e'/%3E%3Cpath fill='%230A0A0A' fill-rule='evenodd' d='M243 312V860H373V662C380 626 402 604 440 600C470 597 505 612 540 627L578 641V378C580 348 596 326 612 310H797V289C772 252 735 210 683 188C625 164 562 163 520 184C482 203 452 232 422 256C382 287 345 303 305 309ZM387 378H513Q527 378 527 392V516Q527 530 513 530H387Q373 530 373 516V392Q373 378 387 378Z'/%3E%3Cpath fill='%230A0A0A' d='M606 455H797V476C780 510 742 545 692 567C662 581 632 590 606 592Z'/%3E%3Cpath d='M406 414 491 393M406 461 491 440M406 507 491 486' stroke='%230A0A0A' stroke-width='24' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>
+  /* Liens officiels des stores : à modifier ici si besoin */
+  var APP_STORE_URL  = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
+  var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
+
+  (function () {
+    var ua = navigator.userAgent || "";
+    var isAndroid = /android/i.test(ua);
+    var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+    // Paramètres UTM (Meta / TikTok Ads) transmis à Google Play pour l'attribution
+    var p = new URLSearchParams(location.search), ref = [];
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (p.get(k)) ref.push(k + "=" + p.get(k));
+    });
+    var play = ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
+
+    // location.replace : le bouton « retour » ne ramène pas sur cette page vide
+    if (isAndroid) location.replace(play);
+    else if (isIOS) location.replace(APP_STORE_URL);
+    else location.replace("/" + location.search + "#telecharger"); // ordinateur : vitrine avec les deux stores
+  })();
+</script>
+<style>
+  :root { --ink: #0A0A0A; --yellow: #f1bc2e; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+    padding: 24px; background: var(--yellow); color: var(--ink); text-align: center;
+    font: 600 1rem/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  svg.mark { width: 64px; height: 80px; }
+  p { margin: 0; max-width: 28ch; }
+  .links { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 260px; }
+  .links a {
+    display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 12px;
+    background: var(--ink); color: #fff; text-decoration: none; font-weight: 700;
+  }
+  .links a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .home { color: var(--ink); font-weight: 700; }
+</style>
+</head>
+<body>
+  <svg class="mark" viewBox="236 160 568 706" aria-hidden="true">
+    <path fill="currentColor" fill-rule="evenodd" d="M243 312V860H373V662C380 626 402 604 440 600C470 597 505 612 540 627L578 641V378C580 348 596 326 612 310H797V289C772 252 735 210 683 188C625 164 562 163 520 184C482 203 452 232 422 256C382 287 345 303 305 309ZM387 378H513Q527 378 527 392V516Q527 530 513 530H387Q373 530 373 516V392Q373 378 387 378Z"/>
+    <path fill="currentColor" d="M606 455H797V476C780 510 742 545 692 567C662 581 632 590 606 592Z"/>
+    <path d="M406 414 491 393M406 461 491 440M406 507 491 486" stroke="currentColor" stroke-width="22" stroke-linecap="round" fill="none"/>
+  </svg>
+  <p>Ouverture du store… Si rien ne se passe, choisissez votre téléphone :</p>
+  <div class="links">
+    <a href="https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR">iPhone : App Store</a>
+    <a href="https://play.google.com/store/apps/details?id=com.houmane.fixnow">Android : Google Play</a>
+  </div>
+  <a class="home" href="/">Découvrir FixNow</a>
+</body>
+</html>
