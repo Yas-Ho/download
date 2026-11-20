@@ -269,28 +269,26 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   --d: 0; --ad: 0; --lift: 0;
   position: absolute; top: 0; left: 50%; width: 25cqw; height: 16cqw; margin-left: -12.5cqw;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.8cqw;
-  border-radius: 3.6cqw; border: 1px solid rgba(255,255,255,.95);
-  background: rgba(238,238,238,.72); -webkit-backdrop-filter: blur(6px) saturate(1.4); backdrop-filter: blur(6px) saturate(1.4);
-  box-shadow: 0 2cqw 3.5cqw -2cqw rgba(0,0,0,.3), inset 0 0 0 .35cqw rgba(255,255,255,.3);
+  /* cartes de côté : blanc plein, contour net et ombre franche pour rester bien lisibles sur le panneau comme sur le fond jaune */
+  border-radius: 3.6cqw; border: 1px solid #D6D6D6;
+  background: #FFFFFF;
+  box-shadow: 0 2.4cqw 4cqw -1.6cqw rgba(0,0,0,.35), 0 .4cqw .8cqw rgba(0,0,0,.08);
   color: var(--ink); font: 700 2.8cqw/1 var(--font); letter-spacing: -0.01em;
   transform: translateX(calc(var(--d) * 30cqw)) translateY(calc(var(--lift) * -2.6cqw))
              translateZ(calc(var(--ad) * -7cqw + var(--lift) * 10cqw)) rotateY(calc(var(--d) * -24deg));
-  opacity: calc(1 - var(--ad) * .16);
   pointer-events: auto; cursor: pointer;
-  transition: transform .75s cubic-bezier(.22,.9,.24,1), opacity .5s ease, background-color .45s ease, box-shadow .55s ease;
+  transition: transform .75s cubic-bezier(.22,.9,.24,1), opacity .5s ease, background-color .45s ease, box-shadow .55s ease, border-color .45s ease;
 }
-/* reflet et trame d'hologramme */
-.holo-card::before {
+/* reflet discret sur la carte jaune sélectionnée */
+.holo-card.is-active::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background:
-    linear-gradient(140deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,0) 42%, rgba(255,255,255,0) 70%, rgba(255,255,255,.45) 100%),
-    repeating-linear-gradient(0deg, rgba(10,10,10,.05) 0 1px, transparent 1px 3px);
+  background: linear-gradient(150deg, rgba(255,255,255,.6) 0%, rgba(255,255,255,0) 45%);
 }
-.holo-card svg { position: relative; width: 6cqw; height: 6cqw; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.holo-card svg { position: relative; width: 6cqw; height: 6cqw; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .holo-card span { position: relative; max-width: 22cqw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .holo-card.is-active {
   --lift: 1;
-  background: var(--yellow); border-color: rgba(255,255,255,.75);
+  background: var(--yellow); border-color: rgba(255,255,255,.8);
   box-shadow: 0 4cqw 6cqw -2.5cqw rgba(110,70,0,.6), 0 0 0 .5cqw rgba(241,188,46,.28),
               inset 0 .6cqw .7cqw rgba(255,255,255,.55), inset 0 -.7cqw .9cqw rgba(150,92,0,.3);
 }
