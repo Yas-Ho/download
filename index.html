@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr-MA">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -38,8 +38,8 @@ function fixnowPlayUrl() {
   else if (FIXNOW_OS === "android") location.href = fixnowPlayUrl();
 })();
 </script>
-<title>FixNow : un pro chez vous, au prix que vous proposez</title>
-<meta name="description" content="Plombier, électricien, ménage, serrurier, déménagement… Proposez votre prix et choisissez parmi les offres de prestataires vérifiés près de chez vous. Disponible au Maroc sur iOS et Android.">
+<title>FixNow, l'app de services à domicile à Casablanca</title>
+<meta name="description" content="Application mobile de services à domicile au Maroc : plombier, électricien, lavage, ménage… Proposez votre prix, choisissez un pro vérifié à Casablanca.">
 <meta name="theme-color" content="#f1bc2e">
 <link rel="canonical" href="https://fixnowapp.com/">
 
@@ -62,7 +62,10 @@ function fixnowPlayUrl() {
 <!-- Liens app natifs (bannière Safari iOS) -->
 <meta name="apple-itunes-app" content="app-id=6761471898">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Crect width='1024' height='1024' rx='224' fill='%23f1bc2e'/%3E%3Cpath fill='%230A0A0A' fill-rule='evenodd' d='M243 312V860H373V662C380 626 402 604 440 600C470 597 505 612 540 627L578 641V378C580 348 596 326 612 310H797V289C772 252 735 210 683 188C625 164 562 163 520 184C482 203 452 232 422 256C382 287 345 303 305 309ZM387 378H513Q527 378 527 392V516Q527 530 513 530H387Q373 530 373 516V392Q373 378 387 378Z'/%3E%3Cpath fill='%230A0A0A' d='M606 455H797V476C780 510 742 545 692 567C662 581 632 590 606 592Z'/%3E%3Cpath d='M406 414 491 393M406 461 491 440M406 507 491 486' stroke='%230A0A0A' stroke-width='24' stroke-linecap='round'/%3E%3C/svg%3E">
+<!-- Favicons en fichiers (Google n'utilise pas les icônes en data-URI dans ses résultats) -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,16 +74,120 @@ function fixnowPlayUrl() {
 <!-- Police du slogan de l'app, chargée uniquement pour les lettres du slogan -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap&text=votreprix%2Cvospros%20">
 
+<!-- Données structurées. La FAQPage doit rester identique, mot pour mot, aux questions visibles de la section #faq. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobileApplication",
-  "name": "FixNow",
-  "operatingSystem": "iOS, Android",
-  "applicationCategory": "LifestyleApplication",
-  "description": "Services à domicile au Maroc : proposez votre prix et choisissez parmi les offres de prestataires vérifiés.",
-  "url": "https://fixnowapp.com/",
-  "installUrl": ["https://apps.apple.com/ma/app/fixnow/id6761471898", "https://play.google.com/store/apps/details?id=com.houmane.fixnow"]
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://fixnowapp.com/#organization",
+      "name": "FixNow",
+      "alternateName": "FixNow App",
+      "url": "https://fixnowapp.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://fixnowapp.com/apple-touch-icon.png",
+        "width": 180,
+        "height": 180
+      },
+      "description": "FixNow est une application mobile de services à domicile au Maroc, disponible depuis 2025 sur iOS et Android.",
+      "disambiguatingDescription": "Application mobile marocaine de services à domicile (fixnowapp.com), disponible depuis 2025 sur l'App Store et Google Play. Sans lien avec d'autres entreprises ou sites qui utilisent un nom similaire.",
+      "email": "equipe.fixnow@gmail.com",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "equipe.fixnow@gmail.com"
+      },
+      "areaServed": { "@type": "Country", "name": "Maroc" },
+      "sameAs": [
+        "https://apps.apple.com/ma/app/fixnow/id6761471898",
+        "https://play.google.com/store/apps/details?id=com.houmane.fixnow",
+        "https://www.instagram.com/fixnow.app/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://fixnowapp.com/#website",
+      "url": "https://fixnowapp.com/",
+      "name": "FixNow",
+      "inLanguage": "fr-MA",
+      "publisher": { "@id": "https://fixnowapp.com/#organization" }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://fixnowapp.com/#app",
+      "name": "FixNow",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "LifestyleApplication",
+      "description": "Application mobile de services à domicile au Maroc : le client propose son prix et choisit parmi les offres de prestataires vérifiés.",
+      "url": "https://fixnowapp.com/",
+      "datePublished": "2025",
+      "countriesSupported": "MA",
+      "publisher": { "@id": "https://fixnowapp.com/#organization" },
+      "installUrl": [
+        "https://apps.apple.com/ma/app/fixnow/id6761471898",
+        "https://play.google.com/store/apps/details?id=com.houmane.fixnow"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "MAD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://fixnowapp.com/#faq",
+      "inLanguage": "fr-MA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Dans quelles villes FixNow est-il disponible ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "FixNow est actif à Casablanca, et s'ouvre progressivement à d'autres villes du Maroc. Installez l'app pour voir les prestataires disponibles autour de vous." }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment les prestataires sont-ils vérifiés ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chaque prestataire envoie sa pièce d'identité à l'inscription. Notre équipe la contrôle avant d'activer son profil. Ensuite, chaque intervention est notée par le client, et ces notes sont visibles sur son profil." }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment se passe le paiement ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Le prix est fixé avant l'intervention : c'est celui de l'offre que vous acceptez dans l'app. Vous réglez directement le prestataire en espèces, une fois le travail terminé." }
+        },
+        {
+          "@type": "Question",
+          "name": "Je suis artisan ou agence, comment m'inscrire ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Téléchargez FixNow, choisissez le profil Prestataire ou Agence et envoyez vos documents. Dès que votre profil est validé, vous recevez les demandes de votre zone." }
+        },
+        {
+          "@type": "Question",
+          "name": "L'application FixNow est-elle gratuite ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. FixNow est gratuite pour les clients : vous ne payez que le prix convenu avec le prestataire. L'inscription est aussi gratuite pour les prestataires, et les nouveaux inscrits reçoivent 1 000 DH de crédit sur leur solde FixNow." }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je annuler une demande ou une intervention ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. Vous pouvez annuler gratuitement une demande tant que vous n'avez pas accepté d'offre. Après l'acceptation, prévenez le prestataire au plus vite par le chat de l'app. Les annulations répétées au dernier moment peuvent entraîner la suspension du compte, côté client comme côté prestataire." }
+        },
+        {
+          "@type": "Question",
+          "name": "Que faire en cas de litige avec un prestataire ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Écrivez au support à equipe.fixnow@gmail.com en indiquant votre numéro de réservation (format FN-…) et en décrivant le problème. Notre équipe vous répond sous 48 heures et contacte le prestataire. Les notes laissées après chaque intervention sont visibles par tous, et un prestataire qui accumule les plaintes est retiré de la plateforme." }
+        },
+        {
+          "@type": "Question",
+          "name": "FixNow fonctionne-t-il pour les urgences, le soir ou le week-end ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. Au moment de la demande, choisissez « Maintenant » pour recevoir les offres des prestataires disponibles tout de suite, ou « Plus tard » pour planifier l'intervention. Le soir et le week-end, le nombre d'offres dépend des prestataires connectés dans votre zone." }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment ma sécurité est-elle assurée pendant une intervention ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chaque prestataire est validé par l'équipe FixNow avant de pouvoir recevoir des demandes. Pendant l'intervention, vous voyez son profil et les notes des clients précédents, vous suivez son arrivée en temps réel sur la carte et vous échangez avec lui par le chat de l'app. Chaque intervention a son propre numéro de réservation." }
+        }
+      ]
+    }
+  ]
 }
 </script>
 
@@ -328,6 +435,12 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 .section-head h2 { font-size: clamp(2rem, 7.4vw, 3.25rem); }
 .section-head p { margin-top: 14px; color: var(--gray); font-size: 1.0625rem; max-width: 36rem; }
 
+/* Qu'est-ce que FixNow ? (définition de l'entité) */
+.about { padding: 64px 0 0; }
+.about h2 { font-size: clamp(1.5rem, 5.4vw, 2rem); }
+.about p { margin-top: 14px; max-width: 46rem; color: var(--gray); font-size: 1.0625rem; }
+.about + .services { padding-top: 56px; }
+
 /* Services */
 .grid {
   margin-top: 32px;
@@ -471,6 +584,8 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   .slogan { transform: translateX(-178px) rotate(-6deg); font-size: 2.25rem; }
   .slogan svg { top: 18px; }
   .section { padding: 120px 0; }
+  .about { padding-top: 104px; }
+  .about + .services { padding-top: 72px; }
   .grid { grid-template-columns: repeat(6, 1fr); }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 40px; }
   .step { grid-template-columns: 1fr; gap: 20px; padding-bottom: 0; }
@@ -538,7 +653,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
             <span><small>DISPONIBLE SUR</small><strong>Google Play</strong></span>
           </a>
         </div>
-        <a class="direct" href="/download">
+        <a class="direct" href="/download/">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
           Télécharger pour mon téléphone
         </a>
@@ -578,6 +693,14 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
           <div class="holo" id="holo"></div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- QU'EST-CE QUE FIXNOW : définition de l'entité pour Google et les assistants IA (à garder identique à llms.txt et aux stores) -->
+  <section class="about" id="fixnow" aria-labelledby="about-title">
+    <div class="wrap">
+      <h2 id="about-title">Qu'est-ce que FixNow ?</h2>
+      <p>FixNow est une application mobile de services à domicile au Maroc, disponible depuis 2025 sur iOS et Android. Elle met en relation les particuliers avec des prestataires vérifiés dans 12 métiers : plomberie, électricité, ménage, serrurerie, électroménager, peinture, menuiserie, jardinage, déménagement, mécanique, lavage auto et coiffure. Le client décrit son besoin et propose son prix, les prestataires proches envoient leurs offres, puis le client choisit. FixNow est actif à Casablanca.</p>
     </div>
   </section>
 
@@ -645,7 +768,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
           <li class="city"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Casablanca</li>
         </ul>
         <div class="pros-cta">
-          <a class="btn btn-yellow btn-lg" href="/download">Devenir prestataire</a>
+          <a class="btn btn-yellow btn-lg" href="/download/">Devenir prestataire</a>
           <p class="pros-note">Même application : choisissez le profil Prestataire ou Agence à l'inscription</p>
         </div>
       </div>
@@ -693,6 +816,26 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
           <summary>Je suis artisan ou agence, comment m'inscrire ?<span class="plus" aria-hidden="true"></span></summary>
           <div class="faq-body"><p>Téléchargez FixNow, choisissez le profil Prestataire ou Agence et envoyez vos documents. Dès que votre profil est validé, vous recevez les demandes de votre zone.</p></div>
         </details>
+        <details class="faq-item" name="faq">
+          <summary>L'application FixNow est-elle gratuite ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Oui. FixNow est gratuite pour les clients : vous ne payez que le prix convenu avec le prestataire. L'inscription est aussi gratuite pour les prestataires, et les nouveaux inscrits reçoivent 1&nbsp;000&nbsp;DH de crédit sur leur solde FixNow.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Puis-je annuler une demande ou une intervention ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Oui. Vous pouvez annuler gratuitement une demande tant que vous n'avez pas accepté d'offre. Après l'acceptation, prévenez le prestataire au plus vite par le chat de l'app. Les annulations répétées au dernier moment peuvent entraîner la suspension du compte, côté client comme côté prestataire.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Que faire en cas de litige avec un prestataire ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Écrivez au support à <a href="mailto:equipe.fixnow@gmail.com">equipe.fixnow@gmail.com</a> en indiquant votre numéro de réservation (format FN-…) et en décrivant le problème. Notre équipe vous répond sous 48 heures et contacte le prestataire. Les notes laissées après chaque intervention sont visibles par tous, et un prestataire qui accumule les plaintes est retiré de la plateforme.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>FixNow fonctionne-t-il pour les urgences, le soir ou le week-end ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Oui. Au moment de la demande, choisissez « Maintenant » pour recevoir les offres des prestataires disponibles tout de suite, ou « Plus tard » pour planifier l'intervention. Le soir et le week-end, le nombre d'offres dépend des prestataires connectés dans votre zone.</p></div>
+        </details>
+        <details class="faq-item" name="faq">
+          <summary>Comment ma sécurité est-elle assurée pendant une intervention ?<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>Chaque prestataire est validé par l'équipe FixNow avant de pouvoir recevoir des demandes. Pendant l'intervention, vous voyez son profil et les notes des clients précédents, vous suivez son arrivée en temps réel sur la carte et vous échangez avec lui par le chat de l'app. Chaque intervention a son propre numéro de réservation.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -729,7 +872,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
       <div>
         <h3>Contact</h3>
         <ul>
-          <li><a href="mailto:contact@fixnowapp.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>contact@fixnowapp.com</a></li>
+          <li><a href="mailto:equipe.fixnow@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg>equipe.fixnow@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -749,7 +892,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
         <h3>Utilisation</h3>
         <p>Ces données servent à mettre en relation clients et prestataires, à sécuriser les échanges, à envoyer les notifications liées à vos demandes et à améliorer l'application. Le prestataire que vous choisissez reçoit uniquement les informations nécessaires à l'intervention.</p>
         <h3>Vos droits</h3>
-        <p>Conformément à la loi marocaine n° 09-08, vous pouvez demander l'accès, la rectification ou la suppression de vos données, ainsi que la suppression de votre compte, en écrivant à <a href="mailto:contact@fixnowapp.com">contact@fixnowapp.com</a>.</p>
+        <p>Conformément à la loi marocaine n° 09-08, vous pouvez demander l'accès, la rectification ou la suppression de vos données, ainsi que la suppression de votre compte, en écrivant à <a href="mailto:equipe.fixnow@gmail.com">equipe.fixnow@gmail.com</a>.</p>
       </div>
     </details>
 
@@ -764,7 +907,7 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 <div class="dock" id="dock" aria-hidden="true">
   <span class="dock-icon"><svg aria-hidden="true"><use href="#fx-mark"/></svg></span>
   <span class="dock-text"><strong>FixNow</strong><span>Votre prix, vos pros</span></span>
-  <a class="btn btn-yellow" href="/download" data-store="auto" tabindex="-1">Télécharger</a>
+  <a class="btn btn-yellow" href="/download/" data-store="auto" tabindex="-1">Télécharger</a>
 </div>
 
 <script>

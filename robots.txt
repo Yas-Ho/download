@@ -1,0 +1,24 @@
+# robots.txt — fixnowapp.com
+# Tout le site est ouvert. /download/ reste explorable : c'est sa balise noindex qui l'écarte de l'index
+# (la bloquer ici empêcherait les robots de lire ce noindex).
+
+User-agent: *
+Allow: /
+
+# Robots des assistants et moteurs IA : autorisés explicitement
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: MistralAI-User
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://fixnowapp.com/sitemap.xml
