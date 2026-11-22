@@ -453,6 +453,14 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 .cta-band p { margin-top: 14px; max-width: 36rem; color: #2b2410; font-size: 1.0625rem; }
 .cta-actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
 .cta-link { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+/* Lien vers /prestataires/ en bas des pages de services */
+.cta-band .cta-pro { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(10,10,10,.15); font-size: .9375rem; font-weight: 600; }
+.cta-pro a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Page /prestataires/ : crédit de bienvenue dans le hero, sous-titre de section */
+.hero-credit { margin-top: 18px; display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: rgba(10,10,10,.08); font-size: .9375rem; font-weight: 700; max-width: 40rem; }
+.hero-credit svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sub-head { margin-top: 56px; font-size: 1.3125rem; letter-spacing: -0.02em; }
 
 @media (min-width: 600px) {
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -463,4 +471,5 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   .hero-page .hero-copy { padding-bottom: 0; }
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps-4 { grid-template-columns: repeat(4, 1fr); gap: 32px; }
 }

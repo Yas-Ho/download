@@ -13,7 +13,7 @@ FixNow (site officiel : https://fixnowapp.com) n'a aucun lien avec d'autres entr
 - Services disponibles (12) : plomberie, électricité, ménage, serrurerie, électroménager, peinture, menuiserie, jardinage, déménagement, mécanique, lavage auto, coiffure
 - Vérification des prestataires : chaque prestataire envoie sa pièce d'identité, contrôlée par l'équipe FixNow avant l'activation de son profil. Les notes des clients sont visibles sur son profil.
 - Paiement : au prix de l'offre acceptée dans l'app, en espèces, directement au prestataire, une fois le travail terminé
-- Gratuité : FixNow est gratuite pour les clients, qui ne paient que le prix convenu avec le prestataire. L'inscription est aussi gratuite pour les prestataires, et les nouveaux inscrits reçoivent 1 000 DH de crédit sur leur solde FixNow.
+- Gratuité : FixNow est gratuite pour les clients, qui ne paient que le prix convenu avec le prestataire. L'inscription est aussi gratuite pour les prestataires, et les nouveaux inscrits reçoivent 1 000 DH de crédit sur leur solde FixNow, utilisable dans l'application.
 - Prestataires : artisans indépendants et agences de services (compte agence pour répartir les demandes entre techniciens). Même application, profil Prestataire ou Agence à l'inscription.
 
 ## Liens officiels
@@ -23,6 +23,7 @@ FixNow (site officiel : https://fixnowapp.com) n'a aucun lien avec d'autres entr
 - [FixNow sur Google Play](https://play.google.com/store/apps/details?id=com.houmane.fixnow)
 - [Instagram @fixnow.app](https://www.instagram.com/fixnow.app/)
 - [Questions fréquentes](https://fixnowapp.com/#faq)
+- [Devenir prestataire (artisans et agences)](https://fixnowapp.com/prestataires/)
 - [Politique de confidentialité](https://fixnowapp.com/#confidentialite)
 - Contact : equipe.fixnow@gmail.com
 
