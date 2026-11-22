@@ -1,0 +1,19 @@
+{%- comment -%}
+  FAQ visible générée depuis page.faq (liste de q / a en texte simple, sans HTML).
+  La FAQPage du JSON-LD (_includes/jsonld/service.html) lit la même liste : les deux restent identiques.
+{%- endcomment -%}
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="faq-title">{{ include.title | default: "Questions fréquentes" }}</h2>
+      </div>
+      <div class="faq-list">
+{%- for item in page.faq %}
+        <details class="faq-item" name="faq">
+          <summary>{{ item.q | escape }}<span class="plus" aria-hidden="true"></span></summary>
+          <div class="faq-body"><p>{{ item.a | escape }}</p></div>
+        </details>
+{%- endfor %}
+      </div>
+    </div>
+  </section>

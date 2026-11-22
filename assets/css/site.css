@@ -408,3 +408,51 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   .store strong { font-size: 1rem; }
   .slogan { transform: translateX(-130px) rotate(-6deg); font-size: 1.7rem; }
 }
+
+/* =========================================================
+   Pages de services (/plombier-casablanca/…)
+   ========================================================= */
+/* Tuile de service cliquable sur l'accueil : tout le carré est cliquable (lien étiré) */
+.tile { position: relative; }
+.tile-link { color: inherit; text-decoration: none; }
+.tile-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.tile-link:focus-visible { outline: none; }
+.tile:focus-within { outline: 3px solid var(--ink); outline-offset: 3px; }
+.tile:has(.tile-link) { transition: background-color .15s ease; }
+.tile:has(.tile-link):hover { background: #E6E6E6; }
+
+/* Hero des pages de services : pas de téléphone, une seule colonne */
+.hero-page .hero-inner { padding-bottom: 56px; }
+.hero-page h1 { max-width: 14ch; }
+.hero-page .hero-sub { max-width: 40rem; }
+.crumbs { margin-bottom: 18px; }
+.crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; font-size: .875rem; font-weight: 600; }
+.crumbs li + li::before { content: "›"; margin-right: 6px; opacity: .55; }
+.crumbs a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Cartes de contenu (problèmes courants, zone et délai) */
+.cards { margin-top: 32px; display: grid; gap: 12px; }
+.card { padding: 22px 20px; border-radius: 18px; background: var(--mist); }
+.card h3 { font-size: 1.125rem; letter-spacing: -0.015em; line-height: 1.25; }
+.card p { margin-top: 8px; color: var(--gray); font-size: 1rem; }
+.card .card-fact { margin-top: 10px; color: var(--ink); font-size: 1.375rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+
+/* Repère de prix (section sombre) */
+.price-note { margin-top: 22px; padding-left: 14px; border-left: 3px solid var(--yellow); color: #E8E8E8; font-size: .9375rem; max-width: 32rem; }
+
+/* Bandeau final */
+.cta-band { background: var(--yellow); }
+.cta-band h2 { font-size: clamp(2rem, 7.4vw, 3.25rem); }
+.cta-band p { margin-top: 14px; max-width: 36rem; color: #2b2410; font-size: 1.0625rem; }
+.cta-actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+.cta-link { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 960px) {
+  .hero-page .hero-inner { grid-template-columns: 1fr; min-height: 0; padding-top: 40px; padding-bottom: 96px; }
+  .hero-page .hero-copy { padding-bottom: 0; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
