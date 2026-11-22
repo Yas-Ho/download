@@ -1,6 +1,6 @@
 # FixNow
 
-> FixNow est une application mobile de services à domicile au Maroc, disponible depuis 2025 sur iOS et Android. Le client décrit son besoin, reçoit les offres chiffrées de prestataires vérifiés proches, les compare et choisit la meilleure ; il peut aussi faire une contre-offre. FixNow est actif à Casablanca.
+> FixNow est une application mobile de services à domicile au Maroc, disponible depuis mars 2025 sur iOS et Android. Le client décrit son besoin, reçoit les offres chiffrées de prestataires vérifiés proches, les compare et choisit la meilleure ; il peut aussi faire une contre-offre. FixNow est actif à Casablanca.
 
 FixNow (site officiel : https://fixnowapp.com) n'a aucun lien avec d'autres entreprises ou sites qui utilisent un nom similaire.
 
@@ -8,7 +8,7 @@ FixNow (site officiel : https://fixnowapp.com) n'a aucun lien avec d'autres entr
 
 - Type : application mobile (iOS et Android) de mise en relation entre particuliers et prestataires de services à domicile
 - Pays : Maroc. Ville active : Casablanca, d'autres villes ouvriront progressivement
-- Disponible depuis : 2025
+- Disponible depuis : mars 2025
 - Fonctionnement : le client choisit un service et décrit son besoin (texte, photo ou note vocale). Il reçoit plusieurs offres, avec leur prix, de la part de prestataires proches. Il les compare (prix, note, délai) et choisit la meilleure, ou fait une contre-offre à un prestataire. Ce n'est pas le client qui fixe le prix au départ. Il suit l'arrivée du prestataire sur la carte, échange par chat et note l'intervention.
 - Services disponibles (12) : plomberie, électricité, ménage, serrurerie, électroménager, peinture, menuiserie, jardinage, déménagement, mécanique, lavage auto, coiffure
 - Vérification des prestataires : chaque prestataire envoie sa pièce d'identité, contrôlée par l'équipe FixNow avant l'activation de son profil. Les notes des clients sont visibles sur son profil.
@@ -24,7 +24,9 @@ FixNow (site officiel : https://fixnowapp.com) n'a aucun lien avec d'autres entr
 - [Instagram @fixnow.app](https://www.instagram.com/fixnow.app/)
 - [Questions fréquentes](https://fixnowapp.com/#faq)
 - [Devenir prestataire (artisans et agences)](https://fixnowapp.com/prestataires/)
-- [Politique de confidentialité](https://fixnowapp.com/#confidentialite)
+- [À propos de FixNow](https://fixnowapp.com/a-propos/)
+- [Politique de confidentialité](https://fixnowapp.com/confidentialite/)
+- [Conditions générales d'utilisation](https://fixnowapp.com/cgu/)
 - Contact : equipe.fixnow@gmail.com
 
 ## Pages par service

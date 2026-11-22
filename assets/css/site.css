@@ -330,19 +330,6 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 .footer-cols svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .footer-bottom { margin-top: 48px; padding-top: 22px; border-top: 1px solid #262626; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: .875rem; color: var(--gray-dark); }
 
-.privacy { margin-top: 36px; border: 1px solid #262626; border-radius: 16px; }
-.privacy summary { cursor: pointer; list-style: none; padding: 16px 18px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.privacy summary::-webkit-details-marker { display: none; }
-.privacy .plus { background: #1E1E1E; }
-.privacy .plus::before, .privacy .plus::after { background: var(--paper); }
-.privacy[open] .plus { background: var(--yellow); }
-.privacy[open] .plus::before, .privacy[open] .plus::after { background: var(--ink); }
-.privacy-body { padding: 0 18px 22px; color: #BDBDBD; font-size: .9375rem; max-width: 46rem; }
-.privacy-body h3 { color: var(--paper); font-size: 1rem; letter-spacing: -0.01em; margin: 18px 0 6px; }
-.privacy-body ul { list-style: disc; padding-left: 1.2em; }
-.privacy-body li + li { margin-top: 4px; }
-.privacy-body a { color: var(--yellow); }
-
 /* Sticky mobile download bar */
 .dock {
   position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 60;
@@ -453,6 +440,22 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 .cta-band p { margin-top: 14px; max-width: 36rem; color: #2b2410; font-size: 1.0625rem; }
 .cta-actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
 .cta-link { font-weight: 700; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+/* Pages de texte (/a-propos/, /confidentialite/, /cgu/) */
+.hero-text .hero-inner { padding-bottom: 48px; }
+.hero-text h1 { font-size: clamp(2.2rem, 8.4vw, 3.6rem); max-width: 20ch; }
+.updated { margin-top: 16px; font-size: .875rem; font-weight: 700; color: #2b2410; }
+.prose { max-width: 46rem; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { margin-top: 48px; font-size: clamp(1.5rem, 5vw, 1.875rem); letter-spacing: -0.02em; line-height: 1.15; }
+.prose h3 { margin-top: 28px; font-size: 1.125rem; letter-spacing: -0.015em; line-height: 1.3; }
+.prose p, .prose ul, .prose ol { margin-top: 14px; color: var(--gray); }
+.prose ul { list-style: disc; padding-left: 1.25em; }
+.prose ol { list-style: decimal; padding-left: 1.25em; }
+.prose li + li { margin-top: 8px; }
+.prose li::marker { color: var(--ink); }
+.prose a { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.prose strong { color: var(--ink); }
+
 /* Lien vers /prestataires/ en bas des pages de services */
 .cta-band .cta-pro { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(10,10,10,.15); font-size: .9375rem; font-weight: 600; }
 .cta-pro a { text-decoration: underline; text-underline-offset: 3px; }
@@ -472,4 +475,5 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .steps-4 { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .hero-text .hero-inner { padding-bottom: 72px; }
 }

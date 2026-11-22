@@ -1,0 +1,64 @@
+---
+layout: base
+title: "À propos de FixNow : services à domicile à Casablanca"
+description: "FixNow, application marocaine de services à domicile : décrivez votre besoin et recevez plusieurs offres de pros vérifiés à Casablanca et Bouskoura."
+jsonld: jsonld/webpage.html
+webpage_type: AboutPage
+breadcrumb: "À propos"
+h1: "À propos de FixNow"
+intro: "Trouver facilement un pro de confiance, au bon prix, grâce aux offres : c'est ce que FixNow rend possible à Casablanca et à Bouskoura."
+updated: "22 novembre 2026"
+date_modified: "2026-11-22"
+---
+{% include page-hero.html %}
+
+  <section class="section" aria-label="Présentation">
+    <div class="wrap">
+      <div class="prose">
+        <h2>Qu'est-ce que FixNow ?</h2>
+        <p>FixNow est une application mobile de services à domicile au Maroc, disponible depuis mars 2025 sur iOS et Android. Elle met en relation les particuliers avec des prestataires vérifiés dans 12 métiers, de la plomberie à la coiffure à domicile.</p>
+
+        <h2>Notre mission</h2>
+        <p>Trouver un pro de confiance ne devrait pas demander des heures d'appels ni des devis à rallonge. FixNow rend cette recherche simple : vous décrivez votre besoin une fois, des prestataires vérifiés proches de chez vous vous font une offre, et vous choisissez celle qui vous convient, au bon prix.</p>
+
+        <h2>Comment ça marche</h2>
+        <ol>
+          <li>Vous décrivez votre besoin dans l'application, avec du texte, une photo ou une note vocale.</li>
+          <li>Vous recevez plusieurs offres chiffrées de prestataires proches de chez vous.</li>
+          <li>Vous comparez les offres (prix, note, délai), puis vous choisissez la meilleure ou faites une contre-offre.</li>
+          <li>Le prestataire intervient. Vous le payez en espèces, directement, une fois le travail terminé, puis vous notez l'intervention.</li>
+        </ol>
+
+        <h2>Des prestataires vérifiés</h2>
+        <p>Chaque prestataire envoie sa pièce d'identité à l'inscription, et l'équipe FixNow la contrôle avant d'activer son profil. Les notes laissées après chaque intervention sont visibles sur son profil.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section steps-section" id="metiers" aria-labelledby="metiers-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="metiers-title">Nos 12 métiers</h2>
+        <p>Choisissez un métier pour voir les besoins les plus courants et le fonctionnement de FixNow</p>
+      </div>
+      <ul class="grid">
+{% include service-tiles.html %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section steps-section" aria-label="Zone, prestataires et contact">
+    <div class="wrap">
+      <div class="prose">
+        <h2>Zone couverte</h2>
+        <p>FixNow est actif dans tout Casablanca et à Bouskoura, notamment : {{ site.data.zone.quartiers | join: ", " }}.</p>
+
+        <h2>Vous êtes artisan ou agence ?</h2>
+        <p>Artisans indépendants et agences de services utilisent la même application : ils reçoivent les demandes de leur zone, voient le besoin avant de se déplacer et envoient leur offre au prix qu'ils fixent. L'application et l'inscription sont gratuites pour les prestataires.</p>
+        <p><a href="/prestataires/">Devenir prestataire</a></p>
+
+        <h2>Nous contacter</h2>
+        <p>Une question, une suggestion ou un problème avec une intervention ? Écrivez-nous à <a href="mailto:equipe.fixnow@gmail.com">equipe.fixnow@gmail.com</a>.</p>
+      </div>
+    </div>
+  </section>

@@ -15,7 +15,7 @@ var SOCIAL_URLS = {
   document.querySelectorAll('[data-store="auto"]').forEach(function (a) {
     if (os === "ios") a.href = APP_STORE_URL;
     else if (os === "android") a.href = playUrl();
-    else a.href = "#telecharger";
+    else a.href = document.getElementById("telecharger") ? "#telecharger" : "/download/"; // ordinateur : boutons de la page, sinon ceux de l'accueil
   });
   if (os === "android") document.querySelectorAll(".stores").forEach(function (s) { s.classList.add("android-first"); });
 
@@ -107,11 +107,13 @@ var SOCIAL_URLS = {
   var dock = document.getElementById("dock");
   var stores = document.getElementById("telecharger");
   var dockLink = dock.querySelector("a");
-  if ("IntersectionObserver" in window) {
+  var heroCopy = document.querySelector(".hero-copy");
+  if ("IntersectionObserver" in window && heroCopy) {
     new IntersectionObserver(function (e) {
       nav.classList.toggle("is-scrolled", !e[0].isIntersecting);
-    }, { rootMargin: "-" + (nav.offsetHeight + 1) + "px 0px 0px 0px" }).observe(document.querySelector(".hero-copy"));
-
+    }, { rootMargin: "-" + (nav.offsetHeight + 1) + "px 0px 0px 0px" }).observe(heroCopy);
+  }
+  if ("IntersectionObserver" in window && stores) { // pas de barre de téléchargement sur les pages sans boutons des stores
     new IntersectionObserver(function (e) {
       var show = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
       dock.classList.toggle("is-visible", show);
@@ -129,10 +131,9 @@ var SOCIAL_URLS = {
     });
   });
 
-  // Ouvre la politique de confidentialité quand on arrive sur #confidentialite
-  var privacy = document.getElementById("confidentialite");
-  function openPrivacy() { if (location.hash === "#confidentialite") privacy.open = true; }
-  window.addEventListener("hashchange", openPrivacy);
-  openPrivacy();
+  // Ancienne adresse de la politique de confidentialité (/#confidentialite, peut-être déclarée dans les stores) : redirige vers sa page
+  function toPrivacy() { if (location.hash === "#confidentialite") location.replace("/confidentialite/"); }
+  window.addEventListener("hashchange", toPrivacy);
+  toPrivacy();
 })();
 </script>
