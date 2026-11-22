@@ -1,0 +1,35 @@
+<script>
+/* =========================================================
+   CONFIGURATION : liens officiels des stores (à modifier ici si besoin)
+   ========================================================= */
+var APP_STORE_URL  = "https://apps.apple.com/ma/app/fixnow/id6761471898?l=fr-FR";
+var PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.houmane.fixnow";
+
+var FIXNOW_OS = (function (ua) {
+  if (/android/i.test(ua)) return "android";
+  if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) return "ios";
+  return "other";
+})(navigator.userAgent || "");
+
+// Transmet les paramètres UTM des pubs Meta/TikTok à Google Play (attribution des installations)
+function fixnowPlayUrl() {
+  var p = new URLSearchParams(location.search), ref = [];
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+    if (p.get(k)) ref.push(k + "=" + p.get(k));
+  });
+  return ref.length ? PLAY_STORE_URL + "&referrer=" + encodeURIComponent(ref.join("&")) : PLAY_STORE_URL;
+}
+
+// Arrivée depuis fixnowapp.com/download (?store=1) sur téléphone : le store s'ouvre tout de suite, avant même
+// le chargement des polices et du reste de la page, qui continue de se charger derrière lui.
+// Le paramètre est retiré de l'adresse pour qu'un retour ou un rechargement ne relance pas le store.
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (!q.has("store")) return;
+  q.delete("store");
+  var rest = q.toString();
+  history.replaceState(null, "", location.pathname + (rest ? "?" + rest : "") + location.hash);
+  if (FIXNOW_OS === "ios") location.href = APP_STORE_URL;
+  else if (FIXNOW_OS === "android") location.href = fixnowPlayUrl();
+})();
+</script>

@@ -1,0 +1,71 @@
+{%- if page.url == "/" -%}{%- assign home = "" -%}{%- else -%}{%- assign home = "/" -%}{%- endif -%}
+<!DOCTYPE html>
+<html lang="fr-MA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{% include store-config.html %}
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+<meta name="theme-color" content="#f1bc2e">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+<!-- Open Graph : aperçu WhatsApp / Instagram / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FixNow">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:title" content="{{ page.og_title | default: page.title }}">
+<meta property="og:description" content="{{ page.og_description | default: page.description }}">
+<meta property="og:image" content="https://fixnowapp.com/og-image.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo FixNow sur fond jaune : un pro chez vous, au prix qui vous convient">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.og_title | default: page.title }}">
+<meta name="twitter:description" content="{{ page.twitter_description | default: page.og_description | default: page.description }}">
+<meta name="twitter:image" content="https://fixnowapp.com/og-image.png?v=2">
+
+<!-- Liens app natifs (bannière Safari iOS) -->
+<meta name="apple-itunes-app" content="app-id=6761471898">
+
+<!-- Favicons en fichiers (Google n'utilise pas les icônes en data-URI dans ses résultats) -->
+{% include favicons.html %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<!-- Police du slogan de l'app, chargée uniquement pour les lettres du slogan -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap&text=comparez%2Cchois%20">
+
+<!-- Données structurées. La FAQPage doit rester identique, mot pour mot, aux questions visibles de la section #faq. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+{% include jsonld-base.html %}{% if page.jsonld %},
+{% include {{ page.jsonld }} %}{% endif %}
+  ]
+}
+</script>
+
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body>
+
+{% include sprite.html %}
+
+{% include header.html %}
+
+<main id="contenu">
+
+{{ content }}
+</main>
+
+{% include footer.html %}
+
+{% include dock.html %}
+
+{% include scripts.html %}
+</body>
+</html>

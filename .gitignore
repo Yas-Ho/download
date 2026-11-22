@@ -1,0 +1,10 @@
+# Build Jekyll local
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Dépendances Ruby locales
+Gemfile.lock
+vendor/
+.bundle/

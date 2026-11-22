@@ -1,0 +1,12 @@
+# Site construit par GitHub Pages avec Jekyll, sans plugin hors de la liste supportée par GitHub Pages.
+# Fichiers avec front matter (---) : passés dans Liquid et le gabarit _layouts/base.html.
+# Fichiers sans front matter (robots.txt, llms.txt, sitemap.xml, images, CNAME…) : copiés tels quels.
+
+url: "https://fixnowapp.com"
+
+# Jamais publiés (build local uniquement)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

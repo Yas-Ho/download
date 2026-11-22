@@ -1,0 +1,138 @@
+<script>
+/* Réseaux sociaux (les liens des stores sont configurés en haut de la page, dans <head>) */
+var SOCIAL_URLS = {
+  instagram: "https://www.instagram.com/fixnow.app/",
+  linkedin:  "https://www.linkedin.com/company/112291596/",   // laisser vide = lien masqué
+  facebook:  "https://www.facebook.com/fixnow.officiel"       // laisser vide = lien masqué
+};
+
+(function () {
+  var os = FIXNOW_OS;
+  var playUrl = fixnowPlayUrl;
+
+  document.querySelectorAll('[data-store="ios"]').forEach(function (a) { a.href = APP_STORE_URL; });
+  document.querySelectorAll('[data-store="android"]').forEach(function (a) { a.href = playUrl(); });
+  document.querySelectorAll('[data-store="auto"]').forEach(function (a) {
+    if (os === "ios") a.href = APP_STORE_URL;
+    else if (os === "android") a.href = playUrl();
+    else a.href = "#telecharger";
+  });
+  if (os === "android") document.querySelectorAll(".stores").forEach(function (s) { s.classList.add("android-first"); });
+
+  // Réseaux sociaux : masque les liens non renseignés
+  document.querySelectorAll("[data-social]").forEach(function (a) {
+    var url = SOCIAL_URLS[a.getAttribute("data-social")];
+    if (url) a.href = url; else a.closest("li").hidden = true;
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Carte 3D animée du hero : chargée après la page, jamais si l'utilisateur réduit les animations
+  // ou économise ses données (l'affiche hero-map.webp reste alors affichée).
+  var heroMap = document.getElementById("hero-map");
+  var calm = matchMedia("(prefers-reduced-motion: reduce)").matches ||
+             (navigator.connection && navigator.connection.saveData);
+  if (heroMap && !calm) {
+    var startMap = function () {
+      heroMap.src = heroMap.getAttribute("data-src");
+      var p = heroMap.play();
+      if (p && p.catch) p.catch(function () {}); // lecture auto refusée (mode économie d'énergie) : l'affiche reste
+    };
+    if (document.readyState === "complete") startMap(); else window.addEventListener("load", startMap);
+  }
+
+  // Carrousel hologramme des services dans le mockup : défile seul, la carte du milieu est sélectionnée (jaune)
+  // et le bouton suit le service. Icônes reprises de la grille des services. Arrêté hors écran et onglet masqué.
+  var holo = document.getElementById("holo");
+  var holoCta = document.getElementById("holo-cta");
+  if (holo && holoCta) {
+    var SERVICES = [
+      ["Plomberie", "un plombier"], ["Ménage", "une aide ménagère"], ["Lavage auto", "un pro du lavage"],
+      ["Serrurier", "un serrurier"], ["Électricité", "un électricien"], ["Peinture", "un peintre"],
+      ["Électroménager", "un réparateur"], ["Menuiserie", "un menuisier"], ["Jardinage", "un jardinier"],
+      ["Déménagement", "un déménageur"], ["Mécanique", "un mécanicien"], ["Coiffure", "un coiffeur"]
+    ];
+    var icons = {};
+    document.querySelectorAll(".grid .tile").forEach(function (t) { icons[t.textContent.trim()] = t.querySelector("svg"); });
+    var track = document.createElement("div");
+    track.className = "holo-track";
+    holo.appendChild(track);
+    var n = SERVICES.length, active = 0, timer = null, swapTimer = null, inView = true;
+    var cards = SERVICES.map(function (s, i) {
+      var c = document.createElement("div");
+      c.className = "holo-card";
+      if (icons[s[0]]) c.appendChild(icons[s[0]].cloneNode(true));
+      var label = document.createElement("span");
+      label.textContent = s[0];
+      c.appendChild(label);
+      c.addEventListener("click", function () { select(i); restart(); });
+      track.appendChild(c);
+      return c;
+    });
+    var layout = function () {
+      cards.forEach(function (c, i) {
+        var d = ((i - active) % n + n) % n;
+        if (d > n / 2) d -= n;
+        var ad = Math.abs(d);
+        c.style.setProperty("--d", d);
+        c.style.setProperty("--ad", ad);
+        c.style.zIndex = 10 - ad;
+        c.classList.toggle("is-active", d === 0);
+        c.classList.toggle("is-far", ad > 2);
+      });
+    };
+    var select = function (i) {
+      active = (i + n) % n;
+      layout();
+      var text = "Rechercher " + SERVICES[active][1];
+      holoCta.classList.add("is-swapping");
+      clearTimeout(swapTimer);
+      swapTimer = setTimeout(function () { holoCta.textContent = text; holoCta.classList.remove("is-swapping"); }, 180);
+    };
+    var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var restart = function () {
+      clearInterval(timer);
+      if (!still && inView && !document.hidden) timer = setInterval(function () { select(active + 1); }, 2400);
+    };
+    layout();
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { inView = e[0].isIntersecting; restart(); }).observe(holo);
+    }
+    document.addEventListener("visibilitychange", restart);
+    restart();
+  }
+
+  // Navbar : fond blanc une fois le hero dépassé ; barre de téléchargement mobile
+  var nav = document.getElementById("nav");
+  var dock = document.getElementById("dock");
+  var stores = document.getElementById("telecharger");
+  var dockLink = dock.querySelector("a");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (e) {
+      nav.classList.toggle("is-scrolled", !e[0].isIntersecting);
+    }, { rootMargin: "-" + (nav.offsetHeight + 1) + "px 0px 0px 0px" }).observe(document.querySelector(".hero-copy"));
+
+    new IntersectionObserver(function (e) {
+      var show = !e[0].isIntersecting && e[0].boundingClientRect.top < 0;
+      dock.classList.toggle("is-visible", show);
+      dock.setAttribute("aria-hidden", show ? "false" : "true");
+      dockLink.tabIndex = show ? 0 : -1;
+      document.body.classList.toggle("has-dock", show);
+    }).observe(stores);
+  }
+
+  // FAQ : une seule question ouverte à la fois (repli pour les navigateurs sans <details name>)
+  var items = document.querySelectorAll(".faq-item");
+  items.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) items.forEach(function (o) { if (o !== d) o.open = false; });
+    });
+  });
+
+  // Ouvre la politique de confidentialité quand on arrive sur #confidentialite
+  var privacy = document.getElementById("confidentialite");
+  function openPrivacy() { if (location.hash === "#confidentialite") privacy.open = true; }
+  window.addEventListener("hashchange", openPrivacy);
+  openPrivacy();
+})();
+</script>
