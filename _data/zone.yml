@@ -1,0 +1,18 @@
+# Quartiers cités dans la carte « Zone couverte » de chaque page de service (« Notamment : … »), dans cet ordre.
+# La zone réelle reste « tout Casablanca et Bouskoura » (areaServed du JSON-LD inchangé).
+quartiers:
+  - "Anfa"
+  - "Californie"
+  - "Aïn Diab"
+  - "Racine"
+  - "Gauthier"
+  - "Bourgogne"
+  - "Maârif"
+  - "Oasis"
+  - "CIL"
+  - "Casa Anfa (CFC)"
+  - "Sidi Maârouf (Casanearshore)"
+  - "Hay Hassani"
+  - "Aïn Sebaâ"
+  - "Hay Mohammadi"
+  - "Sidi Moumen"
