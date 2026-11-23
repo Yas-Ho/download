@@ -4,6 +4,8 @@
 # summary (carte de /guides/), updated, date_published, date_modified,
 # steps_title, steps_intro, steps (t / p), mistakes (liste), call_title, call (liste),
 # service_url, service_name, box_title, need, pros, the_pro, delay (urgent | planifie), faq_title, faq (q / a).
+# Facultatifs : box_lead (phrase avant le texte de l'encadré), box_note (phrase après),
+# now_possible (true : « Maintenant » possible selon les disponibilités, pour delay: planifie).
 # Données structurées : jsonld/guide.html (Article + BreadcrumbList + FAQPage).
 layout: base
 ---
@@ -63,13 +65,19 @@ layout: base
 
         <aside class="guide-box" aria-labelledby="box-title">
           <h2 id="box-title">{{ page.box_title }}</h2>
+{%- if page.box_lead %}
+          <p>{{ page.box_lead }}</p>
+{%- endif %}
           <p>Sur FixNow, vous décrivez {{ page.need }} une fois dans l'app, avec une photo ou une note vocale si besoin. Plusieurs {{ page.pros }} vérifiés proches de chez vous vous envoient leur offre.</p>
           <ul>
             <li>Comparez les offres : prix, note et {% if page.delay == "urgent" %}délai d'arrivée{% else %}disponibilité{% endif %}.</li>
             <li>Choisissez la meilleure, ou faites une contre-offre.</li>
             <li>Payez {{ page.the_pro }} en espèces, une fois le travail terminé.</li>
           </ul>
-          <p>{% if page.delay == "urgent" %}Choisissez « Maintenant » pour une intervention rapide, ou « Plus tard » pour l'heure de votre choix.{% else %}Choisissez « Plus tard » pour fixer le jour et l'heure qui vous arrangent.{% endif %} FixNow est actif dans tout Casablanca et à Bouskoura.</p>
+          <p>{% if page.delay == "urgent" %}Choisissez «&nbsp;Maintenant&nbsp;» pour une intervention rapide, ou «&nbsp;Plus&nbsp;tard&nbsp;» pour l'heure de votre choix.{% else %}Choisissez «&nbsp;Plus&nbsp;tard&nbsp;» pour fixer le jour et l'heure qui vous arrangent.{% if page.now_possible %} «&nbsp;Maintenant&nbsp;» reste possible, selon les disponibilités des {{ page.pros }} autour de vous.{% endif %}{% endif %} FixNow est actif dans tout Casablanca et à Bouskoura.</p>
+{%- if page.box_note %}
+          <p>{{ page.box_note }}</p>
+{%- endif %}
           <div class="cta-actions">
             <a class="btn btn-ink" href="{{ page.service_url }}">{{ page.service_name }}</a>
             <a class="cta-link" href="/download/">Télécharger FixNow</a>

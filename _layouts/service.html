@@ -52,9 +52,9 @@ layout: base
         </li>
 {%- endfor %}
       </ul>
-{%- assign guide = site.pages | where: "service_url", page.url | first %}
-{%- if guide %}
-      <p class="read-also">Lire aussi : <a href="{{ guide.url }}">{{ guide.link_text }}</a></p>
+{%- assign guides_lies = site.pages | where: "service_url", page.url | sort: "order" %}
+{%- if guides_lies.size > 0 %}
+      <p class="read-also">Lire aussi : {% for guide in guides_lies %}{% if forloop.index > 1 %}{% if forloop.last %} et {% else %}, {% endif %}{% endif %}<a href="{{ guide.url }}">{{ guide.link_text }}</a>{% endfor %}</p>
 {%- endif %}
     </div>
   </section>
