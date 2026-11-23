@@ -1,0 +1,38 @@
+---
+layout: base
+title: "Guides pratiques pour la maison à Casablanca | FixNow"
+description: "Fuite d'eau, panne de courant, porte claquée, déménagement, machine à laver : nos guides pratiques pour bien réagir en attendant le pro."
+jsonld: jsonld/guides-index.html
+webpage_type: CollectionPage
+breadcrumb: "Guides"
+h1: "Guides pratiques pour la maison"
+intro: "Des conseils simples et sûrs pour bien réagir face aux pannes et aux imprévus du quotidien, en attendant le pro."
+updated: "23 novembre 2026"
+date_modified: "2026-11-23"
+---
+{% include page-hero.html %}
+
+  <section class="section" id="guides" aria-label="Liste des guides">
+    <div class="wrap">
+      <ul class="cards guide-cards">
+{%- assign guides = site.pages | where: "layout", "guide" | sort: "order" %}
+{%- for guide in guides %}
+        <li class="card">
+          <h2><a class="card-link" href="{{ guide.url }}">{{ guide.h1 }}</a></h2>
+          <p>{{ guide.summary }}</p>
+          <p class="card-service">Service lié : {{ guide.service_name }}</p>
+        </li>
+{%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section steps-section" aria-labelledby="pro-title">
+    <div class="wrap">
+      <div class="prose">
+        <h2 id="pro-title">Besoin d'un pro ?</h2>
+        <p>Sur FixNow, vous décrivez votre besoin une fois dans l'app. Plusieurs prestataires vérifiés proches de chez vous vous envoient leur offre. Vous comparez prix, note et délai, puis vous choisissez la meilleure ou faites une contre-offre. Vous payez en espèces, une fois le travail terminé.</p>
+        <p>FixNow est actif dans tout Casablanca et à Bouskoura. <a href="/#services">Voir tous les services</a></p>
+      </div>
+    </div>
+  </section>

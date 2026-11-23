@@ -1,0 +1,101 @@
+---
+# Gabarit des guides pratiques (/guides/…/) : tout le contenu vient du front matter de la page.
+# Champs : order, breadcrumb, h1, intro (réponse courte), link_text (lien « Lire aussi » des pages de services),
+# summary (carte de /guides/), updated, date_published, date_modified,
+# steps_title, steps_intro, steps (t / p), mistakes (liste), call_title, call (liste),
+# service_url, service_name, box_title, need, pros, the_pro, delay (urgent | planifie), faq_title, faq (q / a).
+# Données structurées : jsonld/guide.html (Article + BreadcrumbList + FAQPage).
+layout: base
+---
+  <!-- EN-TÊTE DU GUIDE : la réponse courte vient tout de suite -->
+  <section class="hero hero-page hero-text" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <nav class="crumbs" aria-label="Fil d'Ariane">
+          <ol>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/guides/">Guides</a></li>
+            <li aria-current="page">{{ page.breadcrumb }}</li>
+          </ol>
+        </nav>
+        <h1 id="hero-title">{{ page.h1 }}</h1>
+        <p class="hero-sub">{{ page.intro }}</p>
+        <p class="updated">Dernière mise à jour : {{ page.updated }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉTAPES -->
+  <section class="section" id="etapes" aria-labelledby="etapes-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="etapes-title">{{ page.steps_title }}</h2>
+        <p>{{ page.steps_intro }}</p>
+      </div>
+      <ol class="guide-steps">
+{%- for step in page.steps %}
+        <li>
+          <h3>{{ step.t }}</h3>
+          <p>{{ step.p }}</p>
+        </li>
+{%- endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ERREURS, QUAND APPELER UN PRO, ENCADRÉ FIXNOW -->
+  <section class="section steps-section" id="conseils" aria-label="Erreurs à éviter et quand appeler un pro">
+    <div class="wrap">
+      <div class="prose">
+        <h2>Les erreurs à éviter</h2>
+        <ul>
+{%- for item in page.mistakes %}
+          <li>{{ item }}</li>
+{%- endfor %}
+        </ul>
+
+        <h2>{{ page.call_title }}</h2>
+        <ul>
+{%- for item in page.call %}
+          <li>{{ item }}</li>
+{%- endfor %}
+        </ul>
+
+        <aside class="guide-box" aria-labelledby="box-title">
+          <h2 id="box-title">{{ page.box_title }}</h2>
+          <p>Sur FixNow, vous décrivez {{ page.need }} une fois dans l'app, avec une photo ou une note vocale si besoin. Plusieurs {{ page.pros }} vérifiés proches de chez vous vous envoient leur offre.</p>
+          <ul>
+            <li>Comparez les offres : prix, note et {% if page.delay == "urgent" %}délai d'arrivée{% else %}disponibilité{% endif %}.</li>
+            <li>Choisissez la meilleure, ou faites une contre-offre.</li>
+            <li>Payez {{ page.the_pro }} en espèces, une fois le travail terminé.</li>
+          </ul>
+          <p>{% if page.delay == "urgent" %}Choisissez « Maintenant » pour une intervention rapide, ou « Plus tard » pour l'heure de votre choix.{% else %}Choisissez « Plus tard » pour fixer le jour et l'heure qui vous arrangent.{% endif %} FixNow est actif dans tout Casablanca et à Bouskoura.</p>
+          <div class="cta-actions">
+            <a class="btn btn-ink" href="{{ page.service_url }}">{{ page.service_name }}</a>
+            <a class="cta-link" href="/download/">Télécharger FixNow</a>
+          </div>
+        </aside>
+
+        <p class="guide-note">Ces conseils sont généraux et ne remplacent pas l'intervention d'un professionnel. En cas de danger immédiat (incendie, personne blessée ou en danger), appelez la Protection civile au 15.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (générée depuis le front matter, identique à la FAQPage du JSON-LD) -->
+{% include faq.html title=page.faq_title %}
+
+  <!-- AUTRES GUIDES -->
+  <section class="section steps-section" id="autres-guides" aria-labelledby="autres-guides-title">
+    <div class="wrap">
+      <div class="prose">
+        <h2 id="autres-guides-title">Autres guides pratiques</h2>
+        <ul>
+{%- assign guides = site.pages | where: "layout", "guide" | sort: "order" %}
+{%- for guide in guides %}{% unless guide.url == page.url %}
+          <li><a href="{{ guide.url }}">{{ guide.h1 }}</a></li>
+{%- endunless %}{% endfor %}
+        </ul>
+        <p><a href="/guides/">Tous les guides</a></p>
+      </div>
+    </div>
+  </section>

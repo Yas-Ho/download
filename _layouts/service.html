@@ -52,6 +52,10 @@ layout: base
         </li>
 {%- endfor %}
       </ul>
+{%- assign guide = site.pages | where: "service_url", page.url | first %}
+{%- if guide %}
+      <p class="read-also">Lire aussi : <a href="{{ guide.url }}">{{ guide.link_text }}</a></p>
+{%- endif %}
     </div>
   </section>
 

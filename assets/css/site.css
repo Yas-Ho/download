@@ -465,6 +465,38 @@ video.screen-map { height: 63%; object-fit: cover; object-position: center top; 
 .hero-credit svg { flex: none; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .sub-head { margin-top: 56px; font-size: 1.3125rem; letter-spacing: -0.02em; }
 
+/* Guides pratiques (/guides/…) */
+.guide-steps { margin-top: 40px; max-width: 46rem; display: grid; counter-reset: gstep; }
+.guide-steps li { position: relative; display: grid; grid-template-columns: 44px 1fr; column-gap: 18px; padding-bottom: 28px; }
+.guide-steps li:last-child { padding-bottom: 0; }
+.guide-steps li::before {
+  counter-increment: gstep; content: counter(gstep); grid-row: span 2;
+  width: 44px; height: 44px; border-radius: 12px; background: var(--yellow);
+  display: grid; place-items: center; font-weight: 800; font-size: 1.1875rem; letter-spacing: -0.03em;
+}
+.guide-steps li::after { content: ""; position: absolute; left: 21px; top: 54px; bottom: 8px; width: 2px; background: var(--line); }
+.guide-steps li:last-child::after { display: none; }
+.guide-steps h3 { font-size: 1.1875rem; letter-spacing: -0.02em; line-height: 1.25; padding-top: 10px; }
+.guide-steps p { margin-top: 6px; color: var(--gray); }
+.prose .guide-box { margin-top: 48px; padding: 26px 22px; border-radius: 20px; background: var(--mist); border-left: 6px solid var(--yellow); }
+.prose .guide-box h2 { margin-top: 0; font-size: clamp(1.375rem, 4.6vw, 1.625rem); }
+.guide-box .cta-actions { margin-top: 22px; }
+.guide-box .btn { min-height: 48px; padding: 12px 18px; line-height: 1.25; text-align: center; color: var(--paper); text-decoration: none; }
+.prose .guide-box .cta-link { color: var(--ink); font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.prose .guide-note { margin-top: 28px; font-size: .9375rem; }
+.read-also { margin-top: 24px; font-weight: 600; }
+.read-also a { text-decoration: underline; text-underline-offset: 3px; }
+.guide-cards .card { position: relative; }
+.guide-cards h2 { font-size: 1.1875rem; letter-spacing: -0.02em; line-height: 1.25; }
+.card-link { color: inherit; text-decoration: none; }
+.card-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.card-link:focus-visible { outline: none; }
+.guide-cards .card:focus-within { outline: 3px solid var(--ink); outline-offset: 3px; }
+.guide-cards .card { transition: background-color .15s ease; }
+.guide-cards .card:hover { background: #E6E6E6; }
+.guide-cards .card:hover h2 { text-decoration: underline; text-underline-offset: 3px; }
+.card .card-service { margin-top: 14px; color: var(--ink); font-size: .875rem; font-weight: 700; }
+
 @media (min-width: 600px) {
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile:has(.tile-link)::after { top: 16px; right: 16px; width: 16px; height: 16px; }

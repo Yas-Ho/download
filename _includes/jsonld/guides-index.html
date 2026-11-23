@@ -1,0 +1,9 @@
+{% include jsonld/webpage.html %},
+    {
+      "@type": "ItemList",
+      "@id": "{{ site.url }}{{ page.url }}#liste",
+      "name": "Guides pratiques FixNow",
+      "itemListElement": [{% assign guides = site.pages | where: "layout", "guide" | sort: "order" %}{% for guide in guides %}
+        { "@type": "ListItem", "position": {{ forloop.index }}, "name": {{ guide.h1 | jsonify }}, "url": "{{ site.url }}{{ guide.url }}" }{% unless forloop.last %},{% endunless %}{% endfor %}
+      ]
+    }
